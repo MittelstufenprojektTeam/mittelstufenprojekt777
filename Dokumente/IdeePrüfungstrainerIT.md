@@ -12,24 +12,31 @@
     - um Zielgruppe zu vergrößern
 
 ### Gespräch mit Possehl
-- verschiedene Fragetypen
+- mögliche verschiedene Fragetypen
     - validierbar, rein ankreuzen zu wenig
-    - einzelne worte bzw ipabfragen validieren
-    - freitext selbst validieren
+    - einzelne worte oder zb ipabfragen validieren
+    - freitext mit Beispiellösung sodass user:in selbst über richtigkeit entscheidet
     - stichwort antworten + selbst validierung?
     - rechenaufgaben
-    - formelangabe
-    - Tabellen füllen
+    - Abfrage von formeln
+    - Tabellen ausfüllen
 - wie läuft die Testzusammenstellung
     - zusammenstellung von aufgaben aus verschiedenen Aufgabenpools
 - Inhalte bzw Aufgaben einstellen
 - Kategrorisierung der Aufgaben (Aufgabenpools)
 - Auswertung
 - 'Fortschitt teilen'-Funktion
-- Informationsbereich (Formeln, Themenbereiche)
+- Informations-/Lernbereich (Formeln, Themenbereiche)
 
-## noch unklar
-Ausgabe über App oder Website 
+## Vergleichbare Testsysteme
+- kahoot
+- moodle 
+- l+ oder 1+
+- its learning test system
+    - Poolsystem -> inhaltliche Categorien 
+
+## Umsetzung
+Es ist noch unklar ob die Ausgabe über App oder Website stattfinden soll
 
 ### App
 Weniger Beachten bzgl Datenschutz
@@ -38,9 +45,3 @@ Weniger Beachten bzgl Datenschutz
 Vorwissen bekannt
 Keycloak als sichheitsdings
 
-## Vergleichbare Testsysteme
-- kahoot
-- moodle 
-- l+ oder 1+
-- its learning test system
-    - Poolsystem -> inhaltliche Categorien 
