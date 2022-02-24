@@ -18,7 +18,7 @@
 ## Ausgangslage
 Dein Team wird daher beauftragt, dem Inhaber und der Geschäftsleitung so schnell wie möglich eine Idee zu präsentieren. Das neue Produkt sollte schnell Erträge bringen. 
 
-Dafür ist es nicht nur wichtig, 
+Dafür ist es wichtig, 
 - die Kosten berechnen
 - möglichen Verkaufspreise im Vergleich zur Konkurrenz zu kalkulieren 
 - angestrebten Gewinn zu ermitteln,
@@ -46,6 +46,8 @@ _Das Dokument dient als Grundlage für die Vorstellung der Idee in einem Gesprä
 - [ ] Gebt das vollständig ausgefüllte Formular über diesen Auftrag ab.
 
 Das Formular liegt in `./Dokumente/Projektvereinbarung-Formular.docx`.
+
+_User Stories_ Welche Features bieten wir für wen an?
 
 ## Anforderungen
 ### Dokumentation
