@@ -2,16 +2,19 @@
 
 <!-- vim-markdown-toc GitLab -->
 
-* [Ausgangslage](#ausgangslage)
-    * [Hinweise zur Technologiewahl](#hinweise-zur-technologiewahl)
-    * [Entwicklungsmethode](#entwicklungsmethode)
-* [Aufgaben](#aufgaben)
-    * [1. Ideenfindung](#1-ideenfindung)
-    * [2. Ideenfindung mit Projektvereinbarung](#2-ideenfindung-mit-projektvereinbarung)
-* [Anforderungen](#anforderungen)
-    * [Dokumentation](#dokumentation)
-        * [Layout](#layout)
-        * [Inhalt](#inhalt)
+    * [Ausgangslage](#ausgangslage)
+        * [Hinweise zur Technologiewahl](#hinweise-zur-technologiewahl)
+        * [Entwicklungsmethode](#entwicklungsmethode)
+    * [Aufgaben](#aufgaben)
+        * [1. Ideenfindung](#1-ideenfindung)
+        * [2. Ideenfindung mit Projektvereinbarung](#2-ideenfindung-mit-projektvereinbarung)
+    * [Anforderungen](#anforderungen)
+        * [Dokumentation](#dokumentation)
+            * [Layout gesamt](#layout-gesamt)
+            * [der darin enthaltene kaufmännischer Teil (Wahlpflicht)](#der-darin-enthaltene-kaufmännischer-teil-wahlpflicht)
+            * [Inhalt](#inhalt)
+            * [mögliche Fragestellung für den wirtschaftlichen Teil](#mögliche-fragestellung-für-den-wirtschaftlichen-teil)
+* [Englisch](#englisch)
 
 <!-- vim-markdown-toc -->
 
@@ -51,7 +54,8 @@ _User Stories_ Welche Features bieten wir für wen an?
 
 ## Anforderungen
 ### Dokumentation
-#### Layout
+Die Dokumentation enhält einen technischen Blickwinkel und einen wirtschaftlichen/kaufmännischen Blickwinkel.
+#### Layout gesamt 
 - [ ] Die Ausarbeitung enthält:
   - [ ] Deckblatt
   - [ ] Inhaltsverzeichnis
@@ -75,6 +79,13 @@ _User Stories_ Welche Features bieten wir für wen an?
 - [ ] Kapitelüberschrift in der Kopfzeile
 - [ ] Nummerierung der Kapitel
 - [ ] Seitenzahlen
+#### der darin enthaltene kaufmännischer Teil (Wahlpflicht)
+mind 2 Themen aussuchen
+- [x] Wirtschaftlichkeit/Armortisierung
+- [ ] Kosten-Nutzen-Analyse
+- [x] Gewinnschwelle
+- [ ] Deckungsbeitrag
+- [ ] Marketingkonzept/Marktanalyse 
 
 #### Inhalt
 - [ ] Projektbeschreibung
@@ -116,6 +127,14 @@ _User Stories_ Welche Features bieten wir für wen an?
   - [ ] Habe ich spezielle Fachbegriffe, Definitionen etc. benutzt?
   - [ ] Woher habe ich sie (à Quellenangaben, Quellenverweise)?
   - [ ] Was ist deren Bedeutung (à Glossar)?
+
+#### mögliche Fragestellung für den wirtschaftlichen Teil
+Diese Fragen können helfen 
+- gedanklich in den wirtschaftlichen Teil einzusteigen,
+- die Preiswahl zu begründen,
+- eine Wirtschaftliche Einleitung zu schreiben 
+- die bearbeiteten Themen in einen Kontext zu setzen.
+
 - [ ] Marktforschung
   - [ ] Welche Zielgruppe soll angesprochen werden?
   - [ ] Welche Erwartungen hat die Zielgruppe an das Produkt?
@@ -135,3 +154,10 @@ _User Stories_ Welche Features bieten wir für wen an?
   - [ ] Wie hoch ist die Wirtschaftlichkeit?
   - [ ] Wo liegen Risiken?
   - [ ] Welche Anforderungen leiten sich hieraus für das Projekt ab?
+
+# Englisch
+Create a document (two A4 pages long) answering the following points relating to the MSP in English:
+- Summarise the product or service developed on 2 A4-Pages
+- Describe the main project goals pursued
+- Explain the project management process applied
+- Reflect critically on the lessons learned during the project
