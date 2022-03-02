@@ -3,7 +3,7 @@ Abgabe: 24.6. vor Mitternacht
 Sprintplanung ist im ITsLerning unter LF12 - Pläne zu finden.
 
 ## 1. Sprint - Planung	16. Feb 08:10 – 9. Mrz 23:55	
-- [ ] Ideenfindung mit Projektvereinbarung
+- [x] Ideenfindung mit Projektvereinbarung
 - [x] Ideenfindung
 - [ ] Jira
 - [ ] User-Stories
@@ -14,7 +14,7 @@ Sprintplanung ist im ITsLerning unter LF12 - Pläne zu finden.
     - Android Studio (IDE), 
     - Java->Kotlin,
     - Kotlin Multiplatform-Plugin
-- [ ] Projektformular ausfüllen
+- [x] Projektformular ausfüllen
     
 - [ ] ggf Projektsetup 
     - [ ] git lauffähig
