@@ -39,15 +39,18 @@ Ticketbreakdown von
 
 ### Mittwoch 9.3.2022 - 1-4 Stunden
 - Link zum Jira in itsLearning aufgabe abgeben.
+Ressourcen>Projekt->Erstellen eines initialen Product Backlog
 - Kanban-Board in Scrum-Board umwandeln?
 - Tickets schätzen
 - DoD
 - DoR
 - IDE
+- Was wollen wir am ende des 1. Sprints vorweisen können?
 - Setup tickets bearbeiten
 
 ## 1. Sprint - Implementierung	10. Mrz 08:00 – 19. Apr 23:55	
 ## 1. Sprint - Retrospektive	20. Apr 08:10 – 23:55	
+## 2. Sprint - Planung	21. Apr 08:10 – 23:55
 ## 2. Sprint - Implementierung	22. Apr 08:10 – 18. Mai 23:55	
 ## 2. Sprint - Retrospektive	19. Mai 08:10 – 23:55	
 ## 3. Sprint - Planung	25. Mai 08:10 – 23:55	
