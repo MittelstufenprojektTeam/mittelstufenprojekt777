@@ -27,6 +27,8 @@ Sprintplanung ist im ITsLerning unter LF12 - Pläne zu finden.
 
 ### Donnerstag 3.3.2022 - 3.+4. Stunde
 - [ ] Ticket breakdown
+- [ ] UserStory in kleinere Tickets schreiben
+- 
 
 ### Donnerstag 3.3.2022 - 5.+6. Stunde
 - [ ] Entwicklungsumgebung einrichten
