@@ -40,13 +40,13 @@ Scrum, Jira
 
 ## Aufgaben
 ### 1. Ideenfindung
-- [ ] Formuliert in eurem Team auf maximal einer Seite die Idee eures Projekts. 
-- [ ] Gebt das Worddokument über diesen Auftrag ab.
+- [x] Formuliert in eurem Team auf maximal einer Seite die Idee eures Projekts. 
+- [x] Gebt das Worddokument über diesen Auftrag ab.
 
 _Das Dokument dient als Grundlage für die Vorstellung der Idee in einem Gespräch mit dem Geschäftsführer Herrn Hofmann._
 
 ### 2. Ideenfindung mit Projektvereinbarung
-- [ ] Gebt das vollständig ausgefüllte Formular über diesen Auftrag ab.
+- [x] Gebt das vollständig ausgefüllte Formular über diesen Auftrag ab.
 
 Das Formular liegt in `./Dokumente/Projektvereinbarung-Formular.docx`.
 
