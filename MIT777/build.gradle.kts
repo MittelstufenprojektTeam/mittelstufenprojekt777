@@ -1,22 +1,27 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+plugins {
+    id("com.android.application")
+    kotlin("android")
+}
+
+android {
+    compileSdk = 32
+    defaultConfig {
+        applicationId = "com.example.mit777.android"
+        minSdk = 17
+        targetSdk = 32
+        versionCode = 1
+        versionName = "1.0"
     }
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30")
-        classpath("com.android.tools.build:gradle:7.1.2")
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+dependencies {
+    implementation(project(":shared"))
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
 }
