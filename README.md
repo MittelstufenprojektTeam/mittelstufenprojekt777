@@ -20,9 +20,9 @@ beantwortet hat.
 
 6. Die App soll verschieden Fragebögen anbieten, basierend auf dem bisherigen Lernfortschritt.
    Dadurch kann ich die App gezielt nach meinen Lehrmethoden verwenden. 
-   6.1. Nur die Aufgaben die ich bisher falsch beantwortet habe 
-   6.2. Noch nicht Beantwortete Aufgaben 
-   6.3. Aufgaben aus einem oder mehreren Lernfeldern
+   1. Nur die Aufgaben die ich bisher falsch beantwortet habe 
+   2. Noch nicht Beantwortete Aufgaben 
+   3. Aufgaben aus einem oder mehreren Lernfeldern
 
 7. Als Azubi will ich in der App Prüfungssimulation mit begrenzter Zeit durchlaufen. Vor der
    Prüfungssimulation muss ein Disclaimer angezeigt werden, der darüber aufklärt, dass die richtige
