@@ -1,0 +1,9 @@
+- tests
+
+php-unit-tests:
+  image:
+  stage: tests
+  script:
+    - php bin/phpunit
+
+
