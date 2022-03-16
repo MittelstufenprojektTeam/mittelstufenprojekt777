@@ -21,7 +21,8 @@
         "phpstan/phpstan-doctrine": "^1.2",
         "phpunit/phpunit": "^9.5",
         "rector/rector": "^0.12.17",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "symfony/phpunit-bridge": "^6.0"
     },
     "config": {
         "allow-plugins": {
