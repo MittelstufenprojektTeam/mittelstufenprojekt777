@@ -1,9 +1,11 @@
-- tests
+stages:
+  - tests
 
 php-unit-tests:
   image: thecodingmachine/php:8.0-v4-cli
   stage: tests
   script:
+    - composer install
     - php bin/phpunit
 
 
