@@ -38,6 +38,9 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "jangregor/phpstan-prophecy": {
+        "version": "1.0.0"
+    },
     "myclabs/deep-copy": {
         "version": "1.11.0"
     },
