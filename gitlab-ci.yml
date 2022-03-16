@@ -1,7 +1,7 @@
 - tests
 
 php-unit-tests:
-  image:
+  image: thecodingmachine/php:8.0-v4-cli
   stage: tests
   script:
     - php bin/phpunit
