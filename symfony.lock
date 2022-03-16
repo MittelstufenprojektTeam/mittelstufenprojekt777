@@ -1,6 +1,42 @@
 {
+    "composer/pcre": {
+        "version": "3.0.0"
+    },
+    "composer/semver": {
+        "version": "3.3.0"
+    },
+    "composer/xdebug-handler": {
+        "version": "3.0.3"
+    },
+    "doctrine/annotations": {
+        "version": "1.13",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a2759dd6123694c8d901d0ec80006e044c2e6457"
+        },
+        "files": [
+            "config/routes/annotations.yaml"
+        ]
+    },
     "doctrine/instantiator": {
         "version": "1.4.1"
+    },
+    "doctrine/lexer": {
+        "version": "1.2.3"
+    },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
@@ -14,6 +50,12 @@
     "phar-io/version": {
         "version": "3.2.1"
     },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
+    },
+    "php-parallel-lint/php-parallel-lint": {
+        "version": "v1.3.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
     },
@@ -25,6 +67,12 @@
     },
     "phpspec/prophecy": {
         "version": "v1.15.0"
+    },
+    "phpstan/phpstan": {
+        "version": "1.4.10"
+    },
+    "phpstan/phpstan-doctrine": {
+        "version": "1.2.11"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.15"
@@ -66,6 +114,12 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "rector/rector": {
+        "version": "0.12.17"
+    },
+    "roave/security-advisories": {
+        "version": "dev-latest"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -197,6 +251,9 @@
     "symfony/http-kernel": {
         "version": "v5.4.6"
     },
+    "symfony/options-resolver": {
+        "version": "v5.4.3"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.25.0"
     },
@@ -214,6 +271,9 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
+    },
+    "symfony/process": {
+        "version": "v5.4.5"
     },
     "symfony/routing": {
         "version": "5.4",
@@ -233,6 +293,9 @@
     },
     "symfony/service-contracts": {
         "version": "v2.5.0"
+    },
+    "symfony/stopwatch": {
+        "version": "v5.4.5"
     },
     "symfony/string": {
         "version": "v5.4.3"

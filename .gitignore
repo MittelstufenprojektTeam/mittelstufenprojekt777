@@ -13,3 +13,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> friendsofphp/php-cs-fixer ###
+build/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
