@@ -10,4 +10,4 @@ php-unit-tests:
     - php bin/phpunit
 
 include:
-  - local: 'build/github-ci/linting.yml'
+  - local: 'build/gitlab-ci/linting.yml'
