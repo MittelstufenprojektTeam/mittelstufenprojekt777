@@ -1,12 +1,19 @@
 name: github-ci
 
-on: [push]
+on: [ push ]
 
 jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test"
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v5
+
+    - name: Setup PHP with PECL extension
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+      run: composer lint
 
         #  unit-tests:
 #    runs-on: ubuntu-latest
