@@ -3,8 +3,5 @@ name: ci
 on: [ push ]
 
 jobs:
-  lint:
-    name: linting
-    runs-on: ubuntu-latest
-    steps:
-      - uses: /.github/workflows/linting.yml
+  linting:
+      - uses: anne431/mittelstufenprojekt777/.github/workflows/linting.yml@linting_in_ci
