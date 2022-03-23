@@ -1,0 +1,13 @@
+name: testing
+
+on:
+  workflow_call:
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v5
+      - uses: php-actions/phpunit@v3
+      - run: composer phpunit

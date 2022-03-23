@@ -79,7 +79,8 @@
       "lint:csfixer:gitlab": "./vendor/bin/php-cs-fixer fix --dry-run --config build/.php-cs-fixer.dist.php --format=gitlab > phpcsfixer.report.json",
       "lint:parallel": "./vendor/bin/parallel-lint src --exclude vendor",
       "lint:stan": "./vendor/bin/phpstan analyse --ansi --configuration=build/phpstan.neon",
-      "lint:stan:gitlab": "./vendor/bin/phpstan analyse --ansi --configuration=build/phpstan.neon --error-format=gitlab > phpstan.report.json"
+      "lint:stan:gitlab": "./vendor/bin/phpstan analyse --ansi --configuration=build/phpstan.neon --error-format=gitlab > phpstan.report.json",
+      "phpunit": "./vendor/bin/phpunit"
     },
     "conflict": {
         "symfony/symfony": "*"

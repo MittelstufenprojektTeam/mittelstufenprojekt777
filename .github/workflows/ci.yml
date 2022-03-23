@@ -1,0 +1,9 @@
+name: ci
+
+on: [ push ]
+
+jobs:
+  linting:
+    uses: ./.github/workflows/linting.yml
+  testing:
+    uses: ./.github/workflows/testing.yml
