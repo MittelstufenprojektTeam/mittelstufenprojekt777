@@ -7,4 +7,4 @@ jobs:
     name: linting
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/linting.yml
+      - uses: /.github/workflows/linting.yml
