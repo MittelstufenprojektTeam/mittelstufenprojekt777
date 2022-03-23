@@ -3,15 +3,20 @@ name: github-ci
 on: [push]
 
 jobs:
-  unit-tests:
+  linting:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-      - uses: php-actions/composer@v5
+      - run: echo "test"
 
-      - name: PHPUnit Tests
-      - uses: php-actions/phpunit@v3
-      - with:
-          php_extensions: xdebug
-          configuration: phpunit.xml.dist
+        #  unit-tests:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: php-actions/composer@v5
+#
+#      - name: PHPUnit Tests
+#      - uses: php-actions/phpunit@v3
+#      - with:
+#          php_extensions: xdebug
+#          configuration: phpunit.xml.dist
