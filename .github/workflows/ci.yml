@@ -4,6 +4,4 @@ on: [ push ]
 
 jobs:
   linting:
-    steps:
-    - uses: anne431/mittelstufenprojekt777/.github/workflows/linting.yml@linting_in_ci
-    - uses: anne431/mittelstufenprojekt777/.github/workflows/testing.yml@linting_in_ci
+    uses: anne431/mittelstufenprojekt777/.github/workflows/linting.yml@linting_in_ci && anne431/mittelstufenprojekt777/.github/workflows/testing.yml@linting_in_ci
