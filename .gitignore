@@ -17,6 +17,3 @@
 ###> friendsofphp/php-cs-fixer ###
 build/.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
-
-.github/workflows/gitlab-ci.yml
-.github/workflows/linting.yml
