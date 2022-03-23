@@ -3,17 +3,18 @@ name: github-ci
 on: [ push ]
 
 jobs:
-  linting:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: php-actions/composer@v5
 
-    - name: Setup PHP with PECL extension
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-      run: composer lint
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - run: composer install
+      - run: composer lint
 
         #  unit-tests:
 #    runs-on: ubuntu-latest
