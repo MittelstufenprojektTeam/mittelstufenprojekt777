@@ -15,13 +15,13 @@ class Topic
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private ?string $title = null;
 
     #[ORM\ManyToMany(targetEntity: Question::class, inversedBy: 'topics')]
-    private $questions;
+    private ArrayCollection $questions;
 
     public function __construct()
     {

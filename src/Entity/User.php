@@ -17,28 +17,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    private ?string $email = null;
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private $password;
+    private string $password;
 
     #[ORM\Column(type: 'string', length: 80, nullable: true)]
-    private $firstName;
+    private ?string $firstName = null;
 
     #[ORM\Column(type: 'string', length: 120, nullable: true)]
-    private $lastName;
+    private ?string $lastName = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $licence;
+    private ?string $licence = null;
 
     #[ORM\OneToMany(mappedBy: 'UserId', targetEntity: Progress::class, orphanRemoval: true)]
-    private $progress;
+    private ArrayCollection $progress;
 
     public function __construct()
     {
@@ -117,13 +117,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
-    public function getSalt()
+    public function getSalt(): void
     {
         // TODO: Implement getSalt() method.
     }

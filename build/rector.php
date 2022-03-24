@@ -26,9 +26,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(PHPUnitSetList::PHPUNIT_91);
     $containerConfigurator->import(PHPUnitSetList::PHPUNIT_CODE_QUALITY);
 
+    $containerConfigurator->import(SetList::TYPE_DECLARATION_STRICT);
+
     // get services (needed for register a single rule)
-    $services = $containerConfigurator->services();
+//    $services = $containerConfigurator->services();
 
     // register a single rule
-    $services->set(TypedPropertyRector::class);
+//    $services->set(TypedPropertyRector::class);
 };

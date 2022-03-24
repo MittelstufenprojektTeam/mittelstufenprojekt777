@@ -15,20 +15,20 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'text')]
-    private $phrase;
+    private ?string $phrase = null;
 
     #[ORM\ManyToMany(targetEntity: Topic::class, mappedBy: 'QuestionList')]
-    private $topics;
+    private ArrayCollection $topics;
 
     #[ORM\ManyToOne(targetEntity: DisplayType::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $displayType;
+    private ?DisplayType $displayType = null;
 
     #[ORM\OneToMany(mappedBy: 'questionId', targetEntity: Option::class, orphanRemoval: true)]
-    private $options;
+    private ArrayCollection $options;
 
     public function __construct()
     {

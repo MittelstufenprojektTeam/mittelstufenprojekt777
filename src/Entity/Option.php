@@ -14,14 +14,14 @@ class Option
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $text;
+    private ?string $text = null;
 
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'options')]
     #[ORM\JoinColumn(nullable: false)]
-    private $question;
+    private ?Question $question = null;
 
     public function getId(): ?int
     {
