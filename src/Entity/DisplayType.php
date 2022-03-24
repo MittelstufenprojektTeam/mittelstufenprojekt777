@@ -13,10 +13,10 @@ class DisplayType
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $title;
+    private ?string $title;
 
     public function getId(): ?int
     {
