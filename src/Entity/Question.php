@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
@@ -110,11 +112,9 @@ class Question
 
     public function removeOption(Option $option): self
     {
-        if ($this->options->removeElement($option)) {
-            // set the owning side to null (unless already changed)
-            if ($option->getQuestion() === $this) {
-                $option->setQuestion(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->options->removeElement($option) && $option->getQuestion() === $this) {
+            $option->setQuestion(null);
         }
 
         return $this;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -21,7 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     #[ORM\Column(type: 'json')]
-    private $roles = [];
+    private array $roles = [];
 
     #[ORM\Column(type: 'string')]
     private $password;
@@ -67,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -75,7 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -182,11 +184,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeProgress(Progress $progress): self
     {
-        if ($this->progress->removeElement($progress)) {
-            // set the owning side to null (unless already changed)
-            if ($progress->getUser() === $this) {
-                $progress->setUser(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->progress->removeElement($progress) && $progress->getUser() === $this) {
+            $progress->setUser(null);
         }
 
         return $this;
