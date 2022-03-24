@@ -23,7 +23,7 @@ class Question
 
     #[ORM\ManyToOne(targetEntity: DisplayType::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $displayTypeId;
+    private $displayType;
 
     #[ORM\OneToMany(mappedBy: 'questionId', targetEntity: Option::class, orphanRemoval: true)]
     private $options;
@@ -78,14 +78,14 @@ class Question
         return $this;
     }
 
-    public function getDisplayTypeId(): ?DisplayType
+    public function getDisplayType(): ?DisplayType
     {
-        return $this->displayTypeId;
+        return $this->displayType;
     }
 
-    public function setDisplayTypeId(?DisplayType $displayTypeId): self
+    public function setDisplayType(?DisplayType $displayType): self
     {
-        $this->displayTypeId = $displayTypeId;
+        $this->displayType = $displayType;
 
         return $this;
     }
@@ -102,7 +102,7 @@ class Question
     {
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
-            $option->setQuestionId($this);
+            $option->setQuestion($this);
         }
 
         return $this;
@@ -112,8 +112,8 @@ class Question
     {
         if ($this->options->removeElement($option)) {
             // set the owning side to null (unless already changed)
-            if ($option->getQuestionId() === $this) {
-                $option->setQuestionId(null);
+            if ($option->getQuestion() === $this) {
+                $option->setQuestion(null);
             }
         }
 

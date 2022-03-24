@@ -18,11 +18,11 @@ class Progress
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'progress')]
     #[ORM\JoinColumn(nullable: false)]
-    private $userId;
+    private $user;
 
     #[ORM\ManyToOne(targetEntity: Topic::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $topicId;
+    private $topic;
 
     public function getId(): ?int
     {
@@ -41,26 +41,26 @@ class Progress
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->userId;
+        return $this->user;
     }
 
-    public function setUserId(?User $userId): self
+    public function setUser(?User $user): self
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getTopicId(): ?Topic
+    public function getTopic(): ?Topic
     {
-        return $this->topicId;
+        return $this->topic;
     }
 
-    public function setTopicId(?Topic $topicId): self
+    public function setTopic(?Topic $topic): self
     {
-        $this->topicId = $topicId;
+        $this->topic = $topic;
 
         return $this;
     }
