@@ -335,6 +335,9 @@
     "symfony/options-resolver": {
         "version": "v5.4.3"
     },
+    "symfony/password-hasher": {
+        "version": "v5.4.3"
+    },
     "symfony/phpunit-bridge": {
         "version": "6.0",
         "recipe": {
@@ -371,6 +374,12 @@
     "symfony/process": {
         "version": "v5.4.5"
     },
+    "symfony/property-access": {
+        "version": "v5.4.5"
+    },
+    "symfony/property-info": {
+        "version": "v5.4.3"
+    },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.6"
     },
@@ -388,6 +397,30 @@
         ]
     },
     "symfony/runtime": {
+        "version": "v5.4.5"
+    },
+    "symfony/security-bundle": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "98f1f2b0d635908c2b40f3675da2d23b1a069d30"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v5.4.5"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.4.3"
+    },
+    "symfony/security-guard": {
+        "version": "v5.4.3"
+    },
+    "symfony/security-http": {
         "version": "v5.4.5"
     },
     "symfony/service-contracts": {
