@@ -17,6 +17,6 @@ class InitialTest extends TestCase
      */
     public function trueTest2(): void
     {
-        self::assertSame(2,2);
+        self::assertSame(2,3);
     }
 }
