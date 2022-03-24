@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -32,6 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $licence;
+
+    #[ORM\OneToMany(mappedBy: 'UserId', targetEntity: Progress::class, orphanRemoval: true)]
+    private $progress;
+
+    public function __construct()
+    {
+        $this->progress = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -148,6 +158,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLicence(?string $licence): self
     {
         $this->licence = $licence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Progress>
+     */
+    public function getProgress(): Collection
+    {
+        return $this->progress;
+    }
+
+    public function addProgress(Progress $progress): self
+    {
+        if (!$this->progress->contains($progress)) {
+            $this->progress[] = $progress;
+            $progress->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgress(Progress $progress): self
+    {
+        if ($this->progress->removeElement($progress)) {
+            // set the owning side to null (unless already changed)
+            if ($progress->getUserId() === $this) {
+                $progress->setUserId(null);
+            }
+        }
 
         return $this;
     }
