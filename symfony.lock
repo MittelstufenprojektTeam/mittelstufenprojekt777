@@ -460,7 +460,7 @@
         "version": "v5.4.3"
     },
     "symfony/translation-contracts": {
-        "version": "v2.5.1"
+        "version": "v3.0.1"
     },
     "symfony/twig-bridge": {
         "version": "v5.4.7"
