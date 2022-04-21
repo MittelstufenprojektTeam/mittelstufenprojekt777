@@ -37,3 +37,26 @@ Als Azubi will ich in der App Prüfungssimulation mit begrenzter Zeit durchlaufe
 Als Abzubi möchte ich vor
 der Prüfungssimulation mit einem Disclaimer darüber aufgeklärt werden, dass die richtige Abschlussprüfung von dieser
 Simulation stark abweichen kann.
+
+
+## Update Styling
+
+Compile assets automatically re-compiel when files change
+```
+npm run watch
+```
+
+run a dev-server that can sometimes update your code withput refreshing the page
+```
+npm dev-server
+```
+compile assets once
+```
+npm dev
+```
+
+on deploy, create a production build
+```
+npm build
+```
+Stop and restart encore each time you update your webpack.config.js file.
