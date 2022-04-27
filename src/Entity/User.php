@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $licence = null;
 
     #[ORM\OneToMany(mappedBy: 'UserId', targetEntity: Progress::class, orphanRemoval: true)]
-    private $progress;
+    private ArrayCollection $progress;
 
     public function __construct()
     {
