@@ -123,9 +123,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getSalt(): void
+    public function getSalt(): string
     {
         // TODO: Implement getSalt() method.
+        return '';
     }
 
     public function getFirstName(): ?string
