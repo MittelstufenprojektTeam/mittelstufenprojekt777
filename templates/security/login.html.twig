@@ -80,16 +80,34 @@
             font-size: xx-large;
             font-weight: bold;
         }
+        .container {
+            -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+            background: white;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .login-error {
+            font-family: Faktum, sans-serif;
+            color: darkred;
+            margin-bottom: 1.5rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
     </style>
 
     <div class="wrapper">
         <div class="container login-form">
 
             <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
                 {% if app.user %}
                     <div class="mb-3">
                         You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
@@ -97,6 +115,9 @@
                 {% endif %}
 
                 <h1 class="header">Please sign in</h1>
+                {% if error %}
+                    <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
                 <label for="inputEmail">Email</label>
                 <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail"
                        class="input"
