@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block body %}
+    <style>
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            min-height: 100%;
+            margin-top: -50px;
+        }
+
+        .login-form {
+            max-width: 550px;
+            width: 90%;
+        }
+
+        .input {
+            background-color: #f6f6f6;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: .5rem;
+            width: 80%;
+            border: 2px solid #f6f6f6;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+        input[type=email]:focus, input[type=password]:focus {
+            color: #495057;
+            background-color: #ffffff;
+            border-color: hsl(240, 100%, 80%) !important;
+            outline: 0;
+            box-shadow: 0 0 0 .1rem hsl(240, 100%, 60%);
+        }
+
+        .submit-button {
+            padding: 15px 80px;
+            margin: 20px 20px 40px 20px;
+            background-color: hsl(240, 100%, 25%);
+            border: none hsl(240, 100%, 25%);
+        }
+
+        .button {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 15px;
+            border-radius: 5px 5px 5px 5px;
+            -webkit-transition: all 250ms linear;
+            -moz-transition: all 250ms linear;
+            -o-transition: all 250ms linear;
+            transition: all 250ms linear;
+        }
+
+        .button:hover {
+            color: hsl(0, 0%, 100%);
+            background-color: hsl(240, 100%, 50%);
+            border-color: hsl(240, 100%, 50%);
+        }
+
+        .header {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: hsl(240, 100%, 25%);
+            font-size: xx-large;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="wrapper">
+        <div class="container login-form">
+
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="header">Please sign in</h1>
+                <label for="inputEmail">Email</label>
+                <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                       class="input"
+                       autocomplete="email" required>
+                <label for="inputPassword">Passwort</label>
+                <input placeholder="Passwort" type="password" name="password" id="inputPassword" class="input"
+                       autocomplete="current-password" required>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button class="button submit-button" type="submit">
+                    Sign in
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
