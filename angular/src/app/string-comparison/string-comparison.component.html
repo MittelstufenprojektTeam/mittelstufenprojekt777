@@ -1,0 +1,8 @@
+<div>
+  <h1 class="question">{{ getQuestion() }}</h1>
+
+  <div>
+    <input class="answer-input" type="text" [(ngModel)]="answer" placeholder="Antwort">
+    <button class="submit-button" (click)="submitAnswer()">Antwort bestätigen</button>
+  </div>
+</div>
