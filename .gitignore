@@ -17,5 +17,3 @@
 ###> friendsofphp/php-cs-fixer ###
 build/.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
-
-src/Security/UserProvider.php
