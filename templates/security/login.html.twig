@@ -3,6 +3,9 @@
 {% block title %}Log in!{% endblock %}
 {% block body %}
     <style>
+        * {
+            font-family: sans-serif;
+        }
         .wrapper {
             height: 100vh;
             display: flex;
@@ -37,6 +40,16 @@
             -webkit-border-radius: 5px 5px 5px 5px;
             border-radius: 5px 5px 5px 5px;
         }
+         .input-label {
+             color: hsl(240, 100%, 30%);
+             padding: 10px;
+             text-align: center;
+             text-decoration: none;
+             display: inline-block;
+             font-size: 18px;
+             margin: .5rem .5rem -1rem;
+             width: 80%;
+         }
 
         input[type=email]:focus, input[type=password]:focus {
             color: #495057;
@@ -118,11 +131,11 @@
                 {% if error %}
                     <div class="login-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                <label for="inputEmail">Email</label>
+                <label class="input-label" for="inputEmail">Email</label>
                 <input placeholder="Email" type="email" value="{{ last_username }}" name="email" id="inputEmail"
                        class="input"
                        autocomplete="email" required>
-                <label for="inputPassword">Passwort</label>
+                <label class="input-label" for="inputPassword">Passwort</label>
                 <input placeholder="Passwort" type="password" name="password" id="inputPassword" class="input"
                        autocomplete="current-password" required>
 
