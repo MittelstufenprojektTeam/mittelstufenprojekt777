@@ -7,12 +7,16 @@ import {Component, Input } from '@angular/core';
 })
 export class StringComparisonComponent {
 
+  submitted: boolean = false;
+  isCorrectAnswered: boolean = false;
   @Input() question: any;
   @Input() answer: string = '';
 
   submitAnswer() {
-    console.log(this.answer)
-    console.log(this.question?.answer === this.answer);
+    this.submitted = true;
+    if (this.question?.answer === this.answer) {
+      this.isCorrectAnswered = true;
+    }
   }
 
   getQuestion(): string|null {

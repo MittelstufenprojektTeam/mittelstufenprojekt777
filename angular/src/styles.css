@@ -48,3 +48,11 @@ input[type=text]:focus {
   outline: 0;
   box-shadow: 0 0 0 .1rem rgb(139, 60, 143)
 }
+
+.bg-green {
+  background-color: hsl(120, 81%, 66%);
+}
+
+.bg-red {
+  background-color: hsl(0, 70%, 60%);
+}
