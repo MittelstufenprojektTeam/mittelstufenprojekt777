@@ -3,7 +3,7 @@
         "version": "3.0.0"
     },
     "composer/semver": {
-        "version": "3.3.0"
+        "version": "3.3.2"
     },
     "composer/xdebug-handler": {
         "version": "3.0.3"
@@ -27,16 +27,16 @@
         "version": "1.6.8"
     },
     "doctrine/common": {
-        "version": "3.2.2"
+        "version": "3.3.0"
     },
     "doctrine/dbal": {
-        "version": "3.3.3"
+        "version": "3.3.5"
     },
     "doctrine/deprecations": {
         "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
-        "version": "2.5",
+        "version": "2.6",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -75,19 +75,19 @@
         "version": "1.2.3"
     },
     "doctrine/migrations": {
-        "version": "3.4.1"
+        "version": "3.5.0"
     },
     "doctrine/orm": {
-        "version": "2.11.2"
+        "version": "2.12.1"
     },
     "doctrine/persistence": {
-        "version": "2.4.0"
+        "version": "2.5.1"
     },
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
     "friendsofphp/php-cs-fixer": {
-        "version": "3.7",
+        "version": "3.8",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -132,16 +132,16 @@
         "version": "5.3.0"
     },
     "phpdocumentor/type-resolver": {
-        "version": "1.6.0"
+        "version": "1.6.1"
     },
     "phpspec/prophecy": {
         "version": "v1.15.0"
     },
     "phpstan/phpstan": {
-        "version": "1.4.10"
+        "version": "1.6.1"
     },
     "phpstan/phpstan-doctrine": {
-        "version": "1.2.11"
+        "version": "1.3.3"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.15"
@@ -173,7 +173,7 @@
         ]
     },
     "psr/cache": {
-        "version": "1.0.1"
+        "version": "2.0.0"
     },
     "psr/container": {
         "version": "1.1.2"
@@ -182,10 +182,10 @@
         "version": "1.0.0"
     },
     "psr/log": {
-        "version": "1.1.4"
+        "version": "2.0.0"
     },
     "rector/rector": {
-        "version": "0.12.17"
+        "version": "0.12.21"
     },
     "roave/security-advisories": {
         "version": "dev-latest"
@@ -209,7 +209,7 @@
         "version": "4.0.4"
     },
     "sebastian/environment": {
-        "version": "5.1.3"
+        "version": "5.1.4"
     },
     "sebastian/exporter": {
         "version": "4.0.4"
@@ -239,13 +239,13 @@
         "version": "3.0.2"
     },
     "symfony/cache": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/cache-contracts": {
-        "version": "v2.5.0"
+        "version": "v2.5.1"
     },
     "symfony/config": {
-        "version": "v5.4.3"
+        "version": "v5.4.7"
     },
     "symfony/console": {
         "version": "5.4",
@@ -260,34 +260,34 @@
         ]
     },
     "symfony/dependency-injection": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/deprecation-contracts": {
-        "version": "v2.5.0"
+        "version": "v3.0.1"
     },
     "symfony/doctrine-bridge": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/dotenv": {
         "version": "v5.4.5"
     },
     "symfony/error-handler": {
-        "version": "v5.4.3"
+        "version": "v5.4.7"
     },
     "symfony/event-dispatcher": {
         "version": "v5.4.3"
     },
     "symfony/event-dispatcher-contracts": {
-        "version": "v2.5.0"
+        "version": "v3.0.1"
     },
     "symfony/filesystem": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/finder": {
         "version": "v5.4.3"
     },
     "symfony/flex": {
-        "version": "1.18",
+        "version": "2.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -321,10 +321,10 @@
         "version": "v5.4.6"
     },
     "symfony/http-kernel": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/maker-bundle": {
-        "version": "1.38",
+        "version": "1.40",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
@@ -372,13 +372,13 @@
         "version": "v1.25.0"
     },
     "symfony/process": {
-        "version": "v5.4.5"
+        "version": "v5.4.7"
     },
     "symfony/property-access": {
-        "version": "v5.4.5"
+        "version": "v5.4.7"
     },
     "symfony/property-info": {
-        "version": "v5.4.3"
+        "version": "v5.4.7"
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.6"
@@ -397,7 +397,7 @@
         ]
     },
     "symfony/runtime": {
-        "version": "v5.4.5"
+        "version": "v5.4.7"
     },
     "symfony/security-bundle": {
         "version": "5.4",
@@ -412,7 +412,7 @@
         ]
     },
     "symfony/security-core": {
-        "version": "v5.4.5"
+        "version": "v5.4.7"
     },
     "symfony/security-csrf": {
         "version": "v5.4.3"
@@ -424,7 +424,7 @@
         "version": "v5.4.5"
     },
     "symfony/service-contracts": {
-        "version": "v2.5.0"
+        "version": "v2.5.1"
     },
     "symfony/stopwatch": {
         "version": "v5.4.5"
@@ -432,17 +432,42 @@
     "symfony/string": {
         "version": "v5.4.3"
     },
+    "symfony/translation-contracts": {
+        "version": "v2.5.1"
+    },
+    "symfony/twig-bridge": {
+        "version": "v5.4.7"
+    },
+    "symfony/twig-bundle": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.4",
+            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
+        },
+        "files": [
+            "config/packages/twig.yaml",
+            "templates/base.html.twig"
+        ]
+    },
     "symfony/var-dumper": {
         "version": "v5.4.6"
     },
     "symfony/var-exporter": {
-        "version": "v5.4.6"
+        "version": "v5.4.7"
     },
     "symfony/yaml": {
         "version": "v5.4.3"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.8"
+    },
+    "twig/twig": {
+        "version": "v3.3.10"
     },
     "webmozart/assert": {
         "version": "1.10.0"
