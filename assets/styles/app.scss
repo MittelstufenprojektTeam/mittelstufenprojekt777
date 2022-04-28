@@ -1,0 +1,115 @@
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+* {
+    font-family: sans-serif;
+}
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    margin-top: -50px;
+}
+
+.login-form {
+    max-width: 550px;
+    width: 90%;
+}
+
+.input {
+    background-color: #f6f6f6;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: .5rem;
+    width: 80%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+.input-label {
+    color: hsl(240, 100%, 30%);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: .5rem .5rem -1rem;
+    width: 80%;
+}
+
+input[type=email]:focus, input[type=password]:focus {
+    color: #495057;
+    background-color: #ffffff;
+    border-color: hsl(240, 100%, 80%) !important;
+    outline: 0;
+    box-shadow: 0 0 0 .1rem hsl(240, 100%, 60%);
+}
+
+.submit-button {
+    padding: 15px 80px;
+    margin: 20px 20px 40px 20px;
+    background-color: hsl(240, 100%, 25%);
+    border: none hsl(240, 100%, 25%);
+}
+
+.button {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 15px;
+    border-radius: 5px 5px 5px 5px;
+    -webkit-transition: all 250ms linear;
+    -moz-transition: all 250ms linear;
+    -o-transition: all 250ms linear;
+    transition: all 250ms linear;
+}
+
+.button:hover {
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(240, 100%, 50%);
+    border-color: hsl(240, 100%, 50%);
+}
+
+.header {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: hsl(240, 100%, 25%);
+    font-size: xx-large;
+    font-weight: bold;
+}
+.container {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: white;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.login-error {
+    font-family: Faktum, sans-serif;
+    color: darkred;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
