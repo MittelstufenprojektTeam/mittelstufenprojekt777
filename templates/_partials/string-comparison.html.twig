@@ -1,0 +1,10 @@
+<div>
+    <div>{{ question }}</div>
+
+    <form method="post" action="{{ path('string_comparison_result', {'id': questionID}) }}">
+        <label>Deine Antwort
+            <input name="answer" type="text" placeholder="Deine Antwort...">
+        </label>
+        <button type="submit">sub</button>
+    </form>
+</div>
