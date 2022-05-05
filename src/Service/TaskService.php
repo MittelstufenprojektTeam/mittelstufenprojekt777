@@ -6,18 +6,16 @@ namespace App\Service;
 
 use App\Entity\Option;
 use App\Entity\Question;
-use JetBrains\PhpStorm\Pure;
 
 /**
  * @see \App\Tests\Service\TaskServiceTest
  */
 class TaskService
 {
-    #[Pure]
- public function compareString(Option $option, string $answer): bool
- {
-     return $option->getText() === $answer;
- }
+    public function compareString(Option $option, string $answer): bool
+    {
+        return $option->getText() === $answer;
+    }
 
     /**
      * todo: replace this method with real queries from the database.
