@@ -1,4 +1,4 @@
-<form action="{{ url(exam) }}">
-    {# insert partial to render question and options here #}
+<form method="post" action="{{ path('string_comparison_result', {'id': params.questionID}) }}">
+    {% include '_partials/' ~  template ~ '.html.twig' with params %}
     {% include "_partials/buttonMenu.html.twig" %}
 </form>
