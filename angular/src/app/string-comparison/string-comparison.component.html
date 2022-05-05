@@ -1,0 +1,15 @@
+<div>
+  <h1 class="question">{{ getQuestion() }}</h1>
+
+  <div *ngIf="!submitted">
+    <form (ngSubmit)="submitAnswer()">
+      <input class="answer-input" type="text" [(ngModel)]="answer" name="answer" placeholder="Antwort">
+      <button class="submit-button" (click)="submitAnswer()">Antwort bestätigen</button>
+    </form>
+  </div>
+  <div *ngIf="submitted">
+    <div class="d-flex justify-content-center align-items-center" [class]="isCorrectAnswered ? 'bg-green' : 'bg-red'">
+      Deine Antwort: "{{ answer }}" ist {{ isCorrectAnswered ? 'korrekt!' : 'leider falsch.' }}
+    </div>
+  </div>
+</div>

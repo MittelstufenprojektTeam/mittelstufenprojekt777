@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+.submit-button {
+  font-family: sans-serif;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 15px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 20px 20px 40px 20px;
+  background-color: hsl(240, 100%, 27%);
+  border-color: hsl(240, 100%, 27%);
+}
+
+.submit-button:hover {
+  font-family: sans-serif;
+  color: white;
+  background-color: hsl(240, 100%, 40%);
+  border-color:hsl(240, 100%, 40%);
+}
+
+
+.answer-input {
+  font-family: sans-serif;
+  background-color: #f6f6f6;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 5px;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  width: 50%;
+}
+
+input[type=text]:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #D6A3D8 !important;
+  outline: 0;
+  box-shadow: 0 0 0 .1rem rgb(139, 60, 143)
+}
+
+.bg-green {
+  background-color: hsl(120, 81%, 66%);
+}
+
+.bg-red {
+  background-color: hsl(0, 70%, 60%);
+}
