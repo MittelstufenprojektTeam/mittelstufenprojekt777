@@ -20,4 +20,20 @@ class ExamController extends AbstractController
     {
         return $this->render('exam/index.html.twig', []);
     }
+
+    /**
+     * @Route("/next", name="nextQuestion")
+     */
+    public function nextQuestion(): Response
+    {
+        return $this->render('exam/index.html.twig', []);
+    }
+
+    /**
+     * @Route("/prev", name="prevQuestion")
+     */
+    public function previousQuestion(): Response
+    {
+        return $this->render('exam/index.html.twig', []);
+    }
 }
