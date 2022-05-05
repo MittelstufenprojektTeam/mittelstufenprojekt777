@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
@@ -26,14 +26,15 @@ class TaskController extends AbstractController
 
         $answer = $request->request->get('answer', '');
 
-        return $this->render('result.html.twig',
+        return $this->render(
+            'result.html.twig',
             [
                 'template' => 'string-comparison',
                 'params' => [
                     'isCorrect' => $this->taskService->compareString($option, $answer),
                     'answer' => $option->getText(),
-                    'userAnswer' => $answer
-                ]
+                    'userAnswer' => $answer,
+                ],
             ]
         );
     }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -8,15 +8,19 @@ use App\Entity\Option;
 use App\Entity\Question;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * @see \App\Tests\Service\TaskServiceTest
+ */
 class TaskService
 {
-    #[Pure] public function compareString(Option $option, string $answer): bool
-    {
-        return $option->getText() === $answer;
-    }
+    #[Pure]
+ public function compareString(Option $option, string $answer): bool
+ {
+     return $option->getText() === $answer;
+ }
 
     /**
-     * todo: replace this method with real queries from the database
+     * todo: replace this method with real queries from the database.
      */
     public function mockQuestions(): array
     {

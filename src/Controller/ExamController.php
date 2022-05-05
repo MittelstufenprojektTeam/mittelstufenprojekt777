@@ -24,7 +24,7 @@ class ExamController extends AbstractController
                 'question' => 'test',
                 'questionID' => 1,
 
-            ]
+            ],
         ]);
     }
 
