@@ -33,6 +33,12 @@ class TaskService
         $question1->addOption($option1);
         $question2->addOption($option2);
 
-        return [$question1, $question2];
+        $freeText = new Question();
+        $option = new Option();
+        $freeText->setPhrase('Das ist ein Freitext: bitte schreibe etwas über Züge');
+        $option->setText('züge sind toll');
+        $freeText->addOption($option);
+
+        return [$question1, $question2, $freeText];
     }
 }
