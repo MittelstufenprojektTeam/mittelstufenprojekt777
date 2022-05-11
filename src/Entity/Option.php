@@ -23,6 +23,9 @@ class Option
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private $solution;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,6 +51,18 @@ class Option
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getSolution(): ?bool
+    {
+        return $this->solution;
+    }
+
+    public function setSolution(bool $solution): self
+    {
+        $this->solution = $solution;
 
         return $this;
     }
