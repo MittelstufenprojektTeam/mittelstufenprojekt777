@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
@@ -32,7 +32,7 @@ class ExamController extends AbstractController
             'params' => [
                 'question' => 'das ist ein Frei Text, schreibe etwas über Züge',
                 'questionID' => 2,
-                'path' => 'free_text_result'
+                'path' => 'free_text_result',
             ],
         ]);
     }

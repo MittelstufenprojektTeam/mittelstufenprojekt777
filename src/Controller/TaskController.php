@@ -68,12 +68,12 @@ class TaskController extends AbstractController
     public function freeTextResultSelfRating(int|string $id, Request $request): Response
     {
         $questions = $this->taskService->mockQuestions();
-        $option = $questions[$id]->getOptions()[0];
+        $option = $questions[$id]->getOptions();
 
-        $answer = (bool) $request->request->get('correctAnswered', 0);
-        //todo: update the answer (has correct answered the free text y/n)
+        $answer = (bool)$request->request->get('correctAnswered', 0);
+        // todo: update the answer (has correct answered the free text y/n)
 
-        //todo: redirect to next Question
+        // todo: redirect to next Question
         return new JsonResponse(['correctAnswered' => $answer]);
     }
 }
