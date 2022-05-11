@@ -7,6 +7,8 @@ namespace App\Service;
 use App\Entity\DisplayType;
 use App\Entity\Option;
 use App\Entity\Question;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @see \App\Tests\Service\TaskServiceTest
@@ -61,8 +63,8 @@ class TaskService
         return $question;
     }
 
-    public function compareAnswer(array $options, array $answer):bool
+    public function compareAnswer(Collection $options, array $answer): bool
     {
-        return count(array_intersect($options, $answer))===count($answer);
+        return count(array_intersect($options->toArray(), $answer)) === count($answer);
     }
 }

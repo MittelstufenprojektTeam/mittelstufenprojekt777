@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -85,19 +85,18 @@ class TaskController extends AbstractController
      */
     public function checkboxResult(int|string $id, Request $request): Response
     {
-        $question = $this->taskService->mockCheckboxQuestion();
-        $options = $question->getOptions();
+        $options = $this->taskService->mockCheckboxQuestion()->getOptions();
 
-        $answer = $request->request->get('answer', '');
+        $answers = $request->request->get('options', []);
 
         return $this->render(
             'exam/result.html.twig',
             [
                 'template' => 'checkbox',
                 'params' => [
-                    'isCorrect' => $this->taskService->compareAnswer($options, $answer),
-                    'answer' => $options->getText(),
-                    'userAnswer' => $answer,
+                    'isCorrect' => $this->taskService->compareAnswer($options, [$answers]),
+                    'answer' => $options[0]->getText(),
+                    'userAnswer' => $answers,
                 ],
             ]
         );

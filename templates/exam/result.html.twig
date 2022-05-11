@@ -1,1 +1,4 @@
-{% include '_partials/' ~ template ~ '-result.html.twig' with params %}
+{% extends "base.html.twig" %}
+{% block body %}
+    {% include '_partials/' ~ template ~ '-result.html.twig' with params %}
+{% endblock %}
