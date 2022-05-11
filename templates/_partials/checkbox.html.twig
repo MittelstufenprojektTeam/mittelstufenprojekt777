@@ -1,0 +1,14 @@
+<div>
+    <div>{{ question.phrase }}</div>
+    <fieldset>
+        <legend>Deine Antwort</legend>
+
+        {% for key, option in question.options %}
+            <div>
+                <input type="checkbox" id="option{{ key }}" name="option{{ key }}">
+                <label for="option{{ key }}">{{ option.text }}</label>
+            </div>
+        {% endfor %}
+
+    </fieldset>
+</div>

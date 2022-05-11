@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\DisplayType;
 use App\Entity\Option;
 use App\Entity\Question;
 
@@ -40,5 +41,28 @@ class TaskService
         $freeText->addOption($option);
 
         return [$question1, $question2, $freeText];
+    }
+
+    public function mockCheckboxQuestion(): Question
+    {
+        $displayType = new DisplayType();
+        $displayType->setTitle('checkbox');
+
+        $question = new Question();
+        $question->setDisplayType($displayType);
+        $question->setPhrase('dies ist eine checkbox-frage');
+
+        for ($i = 1; $i < 5; $i++) {
+            $option = new Option();
+            $option->setText('testOption' . $i);
+            $question->addOption($option);
+        }
+
+        return $question;
+    }
+
+    public function compareAnswer(array $options, array $answer):bool
+    {
+        return count(array_intersect($options, $answer))===count($answer);
     }
 }

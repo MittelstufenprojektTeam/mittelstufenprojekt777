@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/task", name="task_")
+ */
 class TaskController extends AbstractController
 {
     public function __construct(private TaskService $taskService)
@@ -28,7 +32,7 @@ class TaskController extends AbstractController
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'result.html.twig',
+            'exam/result.html.twig',
             [
                 'template' => 'string-comparison',
                 'params' => [
@@ -39,7 +43,6 @@ class TaskController extends AbstractController
             ]
         );
     }
-
     /**
      * @Route("/free-text/result/{id}", name="free_text_result")
      */
@@ -75,5 +78,28 @@ class TaskController extends AbstractController
 
         // todo: redirect to next Question
         return new JsonResponse(['correctAnswered' => $answer]);
+    }
+
+    /**
+     * @Route("/checkbox/result/{id}", name="checkbox_result")
+     */
+    public function checkboxResult(int|string $id, Request $request): Response
+    {
+        $question = $this->taskService->mockCheckboxQuestion();
+        $options = $question->getOptions();
+
+        $answer = $request->request->get('answer', '');
+
+        return $this->render(
+            'exam/result.html.twig',
+            [
+                'template' => 'checkbox',
+                'params' => [
+                    'isCorrect' => $this->taskService->compareAnswer($options, $answer),
+                    'answer' => $options->getText(),
+                    'userAnswer' => $answer,
+                ],
+            ]
+        );
     }
 }

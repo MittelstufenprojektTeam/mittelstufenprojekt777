@@ -1,4 +1,4 @@
-<form method="post" action="{{ path( params.path, {'id': params.questionID}) }}">
-    {% include '_partials/' ~  template ~ '.html.twig' with params %}
+<form method="post" action="{{ path('task_checkbox_result', {'id': 1}) }}">
+    {% include '_partials/' ~  question.displayType.title ~ '.html.twig' %}
     {% include "_partials/buttonMenu.html.twig" %}
 </form>
