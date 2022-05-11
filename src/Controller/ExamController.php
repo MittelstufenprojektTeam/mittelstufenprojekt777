@@ -18,7 +18,14 @@ class ExamController extends AbstractController
      */
     public function exam(): Response
     {
-        return $this->render('exam/index.html.twig', []);
+        return $this->render('exam/index.html.twig', [
+            'template' => 'string-comparison',
+            'params' => [
+                'question' => 'test',
+                'questionID' => 1,
+
+            ],
+        ]);
     }
 
     /**
