@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -18,12 +18,21 @@ class ExamController extends AbstractController
      */
     public function exam(): Response
     {
-        return $this->render('exam/index.html.twig', [
-            'template' => 'string-comparison',
-            'params' => [
-                'question' => 'test',
-                'questionID' => 1,
+//        return $this->render('exam/index.html.twig', [
+//            'template' => 'string-comparison',
+//            'params' => [
+//                'question' => 'test',
+//                'questionID' => 1,
+//                'path' => 'string_comparison_result'
+//            ],
+//        ]);
 
+        return $this->render('exam/index.html.twig', [
+            'template' => 'free-text',
+            'params' => [
+                'question' => 'das ist ein Frei Text, schreibe etwas über Züge',
+                'questionID' => 2,
+                'path' => 'free_text_result'
             ],
         ]);
     }
