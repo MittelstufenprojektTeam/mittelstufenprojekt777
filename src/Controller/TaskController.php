@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/task", name="task_")
+ */
 class TaskController extends AbstractController
 {
     public function __construct(private TaskService $taskService)
@@ -28,7 +31,7 @@ class TaskController extends AbstractController
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'result.html.twig',
+            'exam/result.html.twig',
             [
                 'template' => 'string-comparison',
                 'params' => [
@@ -75,5 +78,25 @@ class TaskController extends AbstractController
 
         // todo: redirect to next Question
         return new JsonResponse(['correctAnswered' => $answer]);
+    }
+
+    /**
+     * @Route("/checkbox/result/{id}", name="checkbox_result")
+     */
+    public function checkboxResult(int $id, Request $request): Response
+    {
+        $answers = $this->taskService->getAnswers($request);
+        $correctAnswers = $this->taskService->getCorrectAnswers($id);
+
+        return $this->render(
+            'exam/result.html.twig',
+            [
+                'template' => 'checkbox',
+                'params' => [
+                    'isCorrect' => $this->taskService->compareCheckbox($correctAnswers, $answers),
+                    'correctAnswers' => $correctAnswers,
+                ],
+            ]
+        );
     }
 }

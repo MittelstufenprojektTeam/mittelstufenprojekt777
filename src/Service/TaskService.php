@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace App\Service;
 
+use App\Entity\DisplayType;
 use App\Entity\Option;
 use App\Entity\Question;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @see \App\Tests\Service\TaskServiceTest
@@ -15,6 +17,11 @@ class TaskService
     public function compareString(Option $option, string $answer): bool
     {
         return $option->getText() === $answer;
+    }
+
+    public function compareCheckbox(array $correctAnswers, array $chosenAnswers): bool
+    {
+        return $correctAnswers === $chosenAnswers;
     }
 
     /**
@@ -40,5 +47,61 @@ class TaskService
         $freeText->addOption($option);
 
         return [$question1, $question2, $freeText];
+    }
+
+    /**
+     * todo: replace this method with real queries from the database.
+     */
+    public function mockCheckboxQuestion(): Question
+    {
+        $displayType = new DisplayType();
+        $displayType->setTitle('checkbox');
+
+        $question = new Question();
+        $question->setDisplayType($displayType);
+        $question->setPhrase('dies ist eine checkbox-frage');
+
+        for ($i = 1; $i < 5; $i++) {
+            $option = new Option();
+            $option->setText('testOption' . $i);
+            if ($i === 1 || $i === 3) {
+                $option->setSolution(true);
+            }
+            $question->addOption($option);
+        }
+
+        return $question;
+    }
+
+    // todo ersetzen durch Datenbankabfrage für
+    // select text from Option where question_id = $id and solution = true
+    public function getCorrectAnswers(int $id): array
+    {
+        $correctAnswers = [];
+        $options = $this->mockCheckboxQuestion()->getOptions();
+        /**
+         * @var Option $option
+         */
+        foreach ($options as $option) {
+            if ($option->getSolution()) {
+                $correctAnswers[] = $option->getText();
+            }
+        }
+
+        return $correctAnswers;
+    }
+
+    public function getAnswers(Request $request): array
+    {
+        /**
+         * @var array $answers
+         */
+        $answers = $request->request->get('options', null);
+
+        if (empty($answers)) {
+            $answers = [];
+        }
+
+        return array_keys($answers);
     }
 }
