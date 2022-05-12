@@ -70,11 +70,10 @@ class TaskService
         return $question;
     }
 
+    // todo ersetzen durch Datenbankabfrage für
+    // select text from Option where question_id = $id and solution = true
     public function getCorrectAnswers(int $id): array
     {
-        // todo ersetzen durch Datenbankabfrage für
-        // select text from Option where question_id = $id and solution = true
-
         $correctAnswers = [];
         $options = $this->mockCheckboxQuestion()->getOptions();
         /**
@@ -87,7 +86,6 @@ class TaskService
         }
 
         return $correctAnswers;
-        // todo ende
     }
 
     public function getAnswers(Request $request): array
