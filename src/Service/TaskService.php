@@ -49,6 +49,9 @@ class TaskService
         return [$question1, $question2, $freeText];
     }
 
+    /**
+     * todo: replace this method with real queries from the database.
+     */
     public function mockCheckboxQuestion(): Question
     {
         $displayType = new DisplayType();
@@ -90,15 +93,15 @@ class TaskService
 
     public function getAnswers(Request $request): array
     {
-        $chosenAnswers = [];
         /**
          * @var array $answers
          */
-        $answers = $request->request->get('options', []);
-        foreach (array_keys($answers) as $answer) {
-            $chosenAnswers[] = $answer;
+        $answers = $request->request->get('options', null);
+
+        if (empty($answers)) {
+            $answers = [];
         }
 
-        return $chosenAnswers;
+        return array_keys($answers);
     }
 }
