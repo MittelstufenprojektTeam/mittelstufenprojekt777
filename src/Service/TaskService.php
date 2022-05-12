@@ -7,8 +7,7 @@ namespace App\Service;
 use App\Entity\DisplayType;
 use App\Entity\Option;
 use App\Entity\Question;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @see \App\Tests\Service\TaskServiceTest
@@ -18,6 +17,11 @@ class TaskService
     public function compareString(Option $option, string $answer): bool
     {
         return $option->getText() === $answer;
+    }
+
+    public function compareCheckbox(array $correctAnswers, array $chosenAnswers): bool
+    {
+        return $correctAnswers === $chosenAnswers;
     }
 
     /**
@@ -57,14 +61,44 @@ class TaskService
         for ($i = 1; $i < 5; $i++) {
             $option = new Option();
             $option->setText('testOption' . $i);
+            if ($i === 1 || $i === 3) {
+                $option->setSolution(true);
+            }
             $question->addOption($option);
         }
 
         return $question;
     }
 
-    public function compareAnswer(Collection $options, array $answer): bool
+    public function getCorrectAnswers(int $id): array
     {
-        return count(array_intersect($options->toArray(), $answer)) === count($answer);
+        //todo ersetzen durch Datenbankabfrage für
+        //select text from Option where question_id = $id and solution = true
+
+        $correctAnswers = [];
+        $options = $this->mockCheckboxQuestion()->getOptions();
+        /**
+         * @var Option $option
+         */
+        foreach ($options as $option) {
+            if ($option->getSolution()) {
+                $correctAnswers[] = $option->getText();
+            }
+        }
+        return $correctAnswers;
+        //todo ende
+    }
+
+    public function getAnswers(Request $request): array
+    {
+        $chosenAnswers = [];
+        /**
+         * @var array $answers
+         */
+        $answers = $request->request->get('options', []);
+        foreach ($answers as $answer => $value) {
+            $chosenAnswers[] = $answer;
+        }
+        return $chosenAnswers;
     }
 }

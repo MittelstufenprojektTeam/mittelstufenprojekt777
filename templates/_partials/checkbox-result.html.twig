@@ -1,7 +1,11 @@
 {% if isCorrect %}
-    <h1>Korrekt</h1>
+    <h1>Deine Antwort war korrekt!</h1>
+    {% for answer in correctAnswers %}
+        <ul>{{ answer }}</ul>
+    {% endfor %}
 {% else %}
-    <h1>Falsch</h1>
-    Deine Antwort: {{ userAnswer }}
-    Richtig wäre: {{ answer }}
+    <h1>Deine Antwort war falsch, dies sind die richtigen Antworten</h1>
+    {% for answer in correctAnswers %}
+        <ul>{{ answer }}</ul>
+    {% endfor %}
 {% endif %}

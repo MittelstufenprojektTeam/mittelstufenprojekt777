@@ -5,7 +5,7 @@
 
         {% for key, option in question.options %}
             <div>
-                <input type="checkbox" id="option{{ key }}" name="options[{{ key }}]">
+                <input type="checkbox" id="option{{ key }}" name="options[{{ option.text }}]">
                 <label for="option{{ key }}">{{ option.text }}</label>
             </div>
         {% endfor %}

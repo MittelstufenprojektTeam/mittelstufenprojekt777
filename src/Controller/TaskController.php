@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Question;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -83,20 +82,18 @@ class TaskController extends AbstractController
     /**
      * @Route("/checkbox/result/{id}", name="checkbox_result")
      */
-    public function checkboxResult(int|string $id, Request $request): Response
+    public function checkboxResult(int $id, Request $request): Response
     {
-        $options = $this->taskService->mockCheckboxQuestion()->getOptions();
-
-        $answers = $request->request->get('options', []);
+        $answers = $this->taskService->getAnswers($request);
+        $correctAnswers = $this->taskService->getCorrectAnswers($id);
 
         return $this->render(
             'exam/result.html.twig',
             [
                 'template' => 'checkbox',
                 'params' => [
-                    'isCorrect' => $this->taskService->compareAnswer($options, [$answers]),
-                    'answer' => $options[0]->getText(),
-                    'userAnswer' => $answers,
+                    'isCorrect' => $this->taskService->compareCheckbox($correctAnswers, $answers),
+                    'correctAnswers' => $correctAnswers,
                 ],
             ]
         );
