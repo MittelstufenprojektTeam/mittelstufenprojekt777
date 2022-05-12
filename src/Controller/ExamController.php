@@ -30,9 +30,9 @@ class ExamController extends AbstractController
         return $this->render('exam/index.html.twig', [
             'template' => 'radio',
             'params' => [
-                'question' => 'test',
+                'question' => 'welche der ',
                 'questionID' => 1,
-                'path' => 'string_comparison_result',
+                'path' => 'radio_result',
                 'options' => [
                     [
                         'title' => 'test1',

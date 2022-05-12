@@ -1,6 +1,6 @@
 <h1>{{ question }}</h1>
 {% for option in options %}
     <label>{{ option.title }}
-        <input type="radio" name="answer" value="{{ option.value }}">
+        <input type="radio" name="answer" value="{{ option.value }}" required>
     </label>
 {% endfor %}

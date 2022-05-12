@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Option;
+use App\Entity\Question;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -75,5 +77,35 @@ class TaskController extends AbstractController
 
         // todo: redirect to next Question
         return new JsonResponse(['correctAnswered' => $answer]);
+    }
+
+    /**
+     * @Route("/radio/result/{id}", name="radio_result")
+     */
+    public function radioResult(int|string $id, Request $request): Response
+    {
+        /** @var Question $question */
+        //get Question byID
+        $question = $this->taskService->mockRadioQuestion()[$id];
+
+        $answer = (int) $request->request->get('answer', 0); //id from the option
+        $userOption = $this->taskService->getUserAnswerOption($answer, $question);
+        //todo: question->getSolution(): Option
+
+        $solution = new Option();
+        $solution->setText('solution');
+
+
+        return $this->render(
+            'result.html.twig',
+            [
+                'template' => 'radio',
+                'params' => [
+                    'isCorrect' => $this->taskService->checkRadioButton($solution, $userOption),
+                    'answer' => $solution->getText(),
+                    'userAnswer' => $userOption?->getText(),
+                ],
+            ]
+        );
     }
 }
