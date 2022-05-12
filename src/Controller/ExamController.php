@@ -28,13 +28,32 @@ class ExamController extends AbstractController
 //        ]);
 
         return $this->render('exam/index.html.twig', [
-            'template' => 'free-text',
+            'template' => 'radio',
             'params' => [
-                'question' => 'das ist ein Frei Text, schreibe etwas über Züge',
-                'questionID' => 2,
-                'path' => 'free_text_result',
+                'question' => 'test',
+                'questionID' => 1,
+                'path' => 'string_comparison_result',
+                'options' => [
+                    [
+                        'title' => 'test1',
+                        'value' => 1
+                    ],
+                    [
+                        'title' => 'test2',
+                        'value' => 2
+                    ]
+                ]
             ],
         ]);
+
+//        return $this->render('exam/index.html.twig', [
+//            'template' => 'free-text',
+//            'params' => [
+//                'question' => 'das ist ein Frei Text, schreibe etwas über Züge',
+//                'questionID' => 2,
+//                'path' => 'free_text_result',
+//            ],
+//        ]);
     }
 
     /**

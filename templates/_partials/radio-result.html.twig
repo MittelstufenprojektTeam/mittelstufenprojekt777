@@ -1,1 +1,7 @@
-radio result
+{% if isCorrect %}
+    <h1>Korrekt</h1>
+{% else %}
+    <h1>falsch</h1>
+    deine antwort: {{ userAnswer }}
+    Richtig währe: {{ answer }}
+{% endif %}

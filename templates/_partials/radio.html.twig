@@ -1,1 +1,6 @@
-radio aufgabe
+<h1>{{ question }}</h1>
+{% for option in options %}
+    <label>{{ option.title }}
+        <input type="radio" name="answer" value="{{ option.value }}">
+    </label>
+{% endfor %}
