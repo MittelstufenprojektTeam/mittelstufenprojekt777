@@ -56,7 +56,7 @@ class TaskController extends AbstractController
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'result.html.twig',
+            ':exam:result.html.twig',
             [
                 'template' => 'free-text',
                 'params' => [
@@ -120,7 +120,7 @@ class TaskController extends AbstractController
 
 
         return $this->render(
-            'result.html.twig',
+            ':exam:result.html.twig',
             [
                 'template' => 'radio',
                 'params' => [
