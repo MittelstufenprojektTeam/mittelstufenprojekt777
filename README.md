@@ -1,24 +1,3 @@
-#Wichtige Informationen
-- Für das Erstellen eines Users wird folgendes Benötigt:
- Ein hashed Passwort, und ein roles Array.
-```bash
-$ php bin/console security:hash-password
-
-## dann für den User ([0] auswählen)
-## und dann das passwort eingeben. 
-## Der output ist dann das gehashte Passwort 
- ```
-```
-Beides kann dann direkt in die DB per Hand eingetragen
-wie folgt werden die Rolls eingetragen: ["ROLE_1", "ROLE_2"]
-```
-
-#known Bugs:
-```
-- Cannot Assign Type of PersistensCollection to type of ArrayCollection
-- Der Typ muss einfach das Attribut ein Typ von Collection bekommen
-```
-
 # Mittelstufenprojekt
 
 Als Azubi möchte ich über meinen Wissensstand Überblick behalten, um meinen Lernfortschritt über die Zeit
@@ -81,3 +60,29 @@ on deploy, create a production build
 npm build
 ```
 Stop and restart encore each time you update your webpack.config.js file.
+
+# Wichtige Informationen
+- Für das Erstellen eines Users wird folgendes Benötigt:
+  Ein hashed Passwort, und ein roles Array.
+```bash
+$ php bin/console security:hash-password
+
+## dann für den User ([0] auswählen)
+## und dann das passwort eingeben. 
+## Der output ist dann das gehashte Passwort 
+ ```
+```
+Beides kann dann direkt in die DB per Hand eingetragen
+wie folgt werden die Rolls eingetragen: ["ROLE_1", "ROLE_2"]
+```
+
+# known Bugs:
+```
+- Cannot Assign Type of PersistensCollection to type of ArrayCollection
+- Der Typ muss einfach das Attribut ein Typ von Collection bekommen
+```
+
+# Conventions
+
+Das Team hat sich auf das Branchnaming `56/feature` geeinigt. Dabei steht vor dem Slash die Ticketnummer und danach der
+Tickettyp.
