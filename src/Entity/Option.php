@@ -24,7 +24,7 @@ class Option
     private ?Question $question = null;
 
     #[ORM\Column(type: 'boolean')]
-    private $solution;
+    private ?bool $solution = null;
 
     public function getId(): ?int
     {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -72,8 +72,8 @@ class TaskService
 
     public function getCorrectAnswers(int $id): array
     {
-        //todo ersetzen durch Datenbankabfrage für
-        //select text from Option where question_id = $id and solution = true
+        // todo ersetzen durch Datenbankabfrage für
+        // select text from Option where question_id = $id and solution = true
 
         $correctAnswers = [];
         $options = $this->mockCheckboxQuestion()->getOptions();
@@ -85,8 +85,9 @@ class TaskService
                 $correctAnswers[] = $option->getText();
             }
         }
+
         return $correctAnswers;
-        //todo ende
+        // todo ende
     }
 
     public function getAnswers(Request $request): array
@@ -96,9 +97,10 @@ class TaskService
          * @var array $answers
          */
         $answers = $request->request->get('options', []);
-        foreach ($answers as $answer => $value) {
+        foreach (array_keys($answers) as $answer) {
             $chosenAnswers[] = $answer;
         }
+
         return $chosenAnswers;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
@@ -42,6 +42,7 @@ class TaskController extends AbstractController
             ]
         );
     }
+
     /**
      * @Route("/free-text/result/{id}", name="free_text_result")
      */
