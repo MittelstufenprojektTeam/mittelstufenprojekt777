@@ -1,6 +1,6 @@
-<h1>{{ question }}</h1>
-{% for option in options %}
-    <label>{{ option.title }}
-        <input type="radio" name="answer" value="{{ option.value }}" required>
+<h1>{{ question.phrase }}</h1>
+{% for option in question.options %}
+    <label>{{ option.text }}
+        <input type="radio" name="answer" value="{{ option.text }}" required>
     </label>
 {% endfor %}

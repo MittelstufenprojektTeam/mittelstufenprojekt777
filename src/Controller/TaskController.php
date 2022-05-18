@@ -107,25 +107,20 @@ class TaskController extends AbstractController
      */
     public function radioResult(int|string $id, Request $request): Response
     {
-        /** @var Question $question */
-        //get Question byID
-        $question = $this->taskService->mockRadioQuestion()[$id];
+        $question = $this->taskService->mockRadioQuestion();
 
-        $answer = (int) $request->request->get('answer', 0); //id from the option
-        $userOption = $this->taskService->getUserAnswerOption($answer, $question);
-        //todo: question->getSolution(): Option
+        $answer = $request->request->get('answer', ''); // id from the option
 
-        $solution = new Option();
-        $solution->setText('solution');
-
+        $userOption = $this->taskService->getUserAnswerByText($question, $answer);
+        $solution = $this->taskService->getCorrectRadioAnswer($question);
 
         return $this->render(
-            ':exam:result.html.twig',
+            'exam/result.html.twig',
             [
                 'template' => 'radio',
                 'params' => [
-                    'isCorrect' => $this->taskService->checkRadioButton($solution, $userOption),
-                    'answer' => $solution->getText(),
+                    'isCorrect' => $this->taskService->checkRadioButtonByText($solution, $userOption),
+                    'answer' => $solution?->getText(),
                     'userAnswer' => $userOption?->getText(),
                 ],
             ]

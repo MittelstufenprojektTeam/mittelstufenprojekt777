@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -73,6 +73,30 @@ class TaskService
         return $question;
     }
 
+    /**
+     * todo: replace this method with real queries from the database.
+     */
+    public function mockRadioQuestion(): Question
+    {
+        $displayType = new DisplayType();
+        $displayType->setTitle('radio');
+
+        $question = new Question();
+        $question->setDisplayType($displayType);
+        $question->setPhrase('dies ist eine radio-frage');
+
+        for ($i = 1; $i < 5; $i++) {
+            $option = new Option();
+            $option->setText('testOption' . $i);
+            if ($i === 1) {
+                $option->setSolution(true);
+            }
+            $question->addOption($option);
+        }
+
+        return $question;
+    }
+
     // todo ersetzen durch Datenbankabfrage für
     // select text from Option where question_id = $id and solution = true
     public function getCorrectAnswers(int $id): array
@@ -105,52 +129,53 @@ class TaskService
         return array_keys($answers);
     }
 
-    public function mockRadioQuestion(): array
+    public function checkRadioButton(null|Option $correctAnswer, null|Option $userAnswer): bool
     {
-        $question1 = new Question();
-        $question2 = new Question();
-        $question1 = $question1->setPhrase('welche dieser farben ist grün?');
-        $question2 = $question2->setPhrase('welche dieser farben ist blau?');
-
-
-        $option1 = new Option();
-        $option2 = new Option();
-        $option3 = new Option();
-        $option4 = new Option();
-        $option1->setText('blau');
-        $option2->setText('grau');
-        $option3->setText('4');
-        $option4->setText('grün');
-
-        $question1->addOption($option1);
-        $question1->addOption($option2);
-        $question1->addOption($option3);
-        $question1->addOption($option4);
-        $question2->addOption($option1);
-        $question2->addOption($option3);
-
-
-        return [$question1, $question2];
+        return $userAnswer && $correctAnswer && $userAnswer->getId() === $correctAnswer->getId();
     }
 
-    public function checkRadioButton(Option $options, null|Option $answer): bool
+    public function checkRadioButtonByText(null|Option $correctAnswer, null|Option $userAnswer): bool
     {
-        return $answer?->getId() === 1;
-
-//        return $options->getId() === $answer?->getId(); //this is for the check
+        return $userAnswer && $correctAnswer && $userAnswer->getText() === $correctAnswer->getText();
     }
 
-    public function getUserAnswerOption(int $id, Question $question): null|Option
+    public function getCorrectRadioAnswer(Question $question): null|Option
     {
-
-        $answerOption = null;
+        $solution = null;
         foreach ($question->getOptions() as $option) {
-            if ($option->getId() === $id) {
-                $answerOption = $option;
+            if ($option->getSolution()) {
+                $solution = $option;
                 break;
             }
         }
 
-        return $answerOption;
+        return $solution;
+    }
+
+    /** should be used at the point, where the db is ready */
+    public function getUserAnswer(Question $question, int $userAnswerID): null|Option
+    {
+        $userAnswer = null;
+        foreach ($question->getOptions() as $option) {
+            if ($option->getId() === $userAnswerID) {
+                $userAnswer = $option;
+                break;
+            }
+        }
+
+        return $userAnswer;
+    }
+
+    public function getUserAnswerByText(Question $question, string $answer)
+    {
+        $userAnswer = null;
+        foreach ($question->getOptions() as $option) {
+            if ($option->getText() === $answer) {
+                $userAnswer = $option;
+                break;
+            }
+        }
+
+        return $userAnswer;
     }
 }

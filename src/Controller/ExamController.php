@@ -60,7 +60,7 @@ class ExamController extends AbstractController
 //        ]);
 
         return $this->render('exam/index.html.twig', [
-            'question' => $this->taskService->mockCheckboxQuestion(),
+            'question' => $this->taskService->mockRadioQuestion(),
         ]);
 
 //        return $this->render('exam/index.html.twig', [
