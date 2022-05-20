@@ -60,3 +60,14 @@ input[type=text]:focus {
 .bg-red {
     background-color: hsl(0, 70%, 60%);
 }
+
+.tab-pills {
+    color: hsl(240, 100%, 27%);
+}
+
+.tab-pills:hover {
+    color: hsl(240, 100%, 66%);
+}
+.tab-pills.active {
+    background-color: hsl(240, 100%, 27%) !important;
+}
