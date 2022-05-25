@@ -8,7 +8,6 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -57,8 +56,6 @@ class Question
 
     public function addTopic(Topic $topic): self
     {
-
-
         if (!$this->topics->contains($topic)) {
             $this->topics[] = $topic;
         }
@@ -90,7 +87,7 @@ class Question
      */
     public function getOptions(): Collection
     {
-        if (!$this->options) {
+        if ($this->options === null) {
             $this->options = new ArrayCollection();
         }
 
@@ -99,7 +96,7 @@ class Question
 
     public function addOption(Option $option): self
     {
-        if (!$this->options) {
+        if ($this->options === null) {
             $this->options = new ArrayCollection();
         }
 
