@@ -75,6 +75,11 @@ $ php bin/console security:hash-password
 Beides kann dann direkt in die DB per Hand eingetragen
 wie folgt werden die Rolls eingetragen: ["ROLE_1", "ROLE_2"]
 ```
+- Commands zum Ausführen der Migrations
+```
+php bin/console doctrine:migrations:migrate <- Ausführen aller Migrations sollte noch nicht mal die Datenbankstruktur vorhanden sein
+php bin/console doctrine:migrations:migrate 'DoctrineMigrations\Version20180605025653' <- Ausführen der Migrations zum Ausfühlen der Datenbank mit Inhalt
+```
 
 # known Bugs:
 ```
