@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Option;
+use App\Entity\Question;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -54,7 +56,7 @@ class TaskController extends AbstractController
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'result.html.twig',
+            ':exam:result.html.twig',
             [
                 'template' => 'free-text',
                 'params' => [
@@ -95,6 +97,31 @@ class TaskController extends AbstractController
                 'params' => [
                     'isCorrect' => $this->taskService->compareCheckbox($correctAnswers, $answers),
                     'correctAnswers' => $correctAnswers,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * @Route("/radio/result/{id}", name="radio_result")
+     */
+    public function radioResult(int|string $id, Request $request): Response
+    {
+        $question = $this->taskService->mockRadioQuestion();
+
+        $answer = $request->request->get('answer', ''); // id from the option
+
+        $userOption = $this->taskService->getUserAnswerByText($question, $answer);
+        $solution = $this->taskService->getCorrectRadioAnswer($question);
+
+        return $this->render(
+            'exam/result.html.twig',
+            [
+                'template' => 'radio',
+                'params' => [
+                    'isCorrect' => $this->taskService->checkRadioButtonByText($solution, $userOption),
+                    'answer' => $solution?->getText(),
+                    'userAnswer' => $userOption?->getText(),
                 ],
             ]
         );

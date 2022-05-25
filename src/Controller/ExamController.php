@@ -39,9 +39,38 @@ class ExamController extends AbstractController
 //                'path' => 'free_text_result',
 //            ],
 //        ]);
+
+//        return $this->render('exam/index.html.twig', [
+//            'template' => 'radio',
+//            'params' => [
+//                'question' => 'welche der ',
+//                'questionID' => 1,
+//                'path' => 'radio_result',
+//                'options' => [
+//                    [
+//                        'title' => 'test1',
+//                        'value' => 1
+//                    ],
+//                    [
+//                        'title' => 'test2',
+//                        'value' => 2
+//                    ]
+//                ]
+//            ],
+//        ]);
+
         return $this->render('exam/index.html.twig', [
-            'question' => $this->taskService->mockCheckboxQuestion(),
+            'question' => $this->taskService->mockRadioQuestion(),
         ]);
+
+//        return $this->render('exam/index.html.twig', [
+//            'template' => 'free-text',
+//            'params' => [
+//                'question' => 'das ist ein Frei Text, schreibe etwas über Züge',
+//                'questionID' => 2,
+//                'path' => 'free_text_result',
+//            ],
+//        ]);
     }
 
     /**
