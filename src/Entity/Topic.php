@@ -20,13 +20,6 @@ class Topic
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToMany(targetEntity: Question::class, inversedBy: 'topics')]
-    private ArrayCollection $questions;
-
-    public function __construct()
-    {
-        $this->questions = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -41,30 +34,6 @@ class Topic
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
-
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions[] = $question;
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        $this->questions->removeElement($question);
 
         return $this;
     }

@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Entity\Option;
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -18,7 +19,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class QuestionRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+
+    public function __construct(ManagerRegistry $registry, private OptionRepository $optionRepository)
     {
         parent::__construct($registry, Question::class);
     }
@@ -64,15 +67,17 @@ class QuestionRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Question
+    public function findOneRandom(): ?Question
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $questions = $this->findAll();
+        $qu = $questions[array_rand($questions)];
+
+      $options =  $this->optionRepository->findBy(['question' => $qu->getId()]);
+
+        foreach ($options as $option) {
+            $qu->addOption($option);
+        }
+
+        return $qu;
     }
-    */
 }
