@@ -101,7 +101,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/radio/result/{id}", name="radio_result")
+     * @Route("/radio/result/{questionId}", name="radio_result")
      */
     public function radioResult(int|string $questionId, Request $request): Response
     {
