@@ -4,6 +4,9 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\Question;
+use App\Repository\QuestionRepository;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,12 +16,40 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TopicController extends AbstractController
 {
+    private const MAP_PARTIAL_TITLE = [
+        'Freitext' => 'free-text',
+        'Eine Einzelne Antwortmoeglichkeit' => 'radio',
+        'Eine Einzelnes Wort' => 'string-comparison',
+        'Rechenaufgabe' => 'string-comparison',
+        'Stringvergleich' => 'string-comparison',
+        'Mehrfachauswahl' => 'checkbox',
+
+    ];
+
     /**
      * @Route("/", name="index")
      */
-    public function topic(): Response
+    public function topic(QuestionRepository $repository): Response
     {
-        return $this->render('topic/index.html.twig', []);
+        $question = $repository->findOneRandom();
+
+        // todo: get random question
+        // todo: pass question to template
+        // todo: at click next render another random question
+
+        $title = $question?->getDisplayType()?->getTitle();
+        $question->getOptions()->getValues();
+        if (!$title) {
+            throw new Exception('Some cool error msg');
+        }
+
+        return $this->render(
+            'topic/index.html.twig',
+            [
+                'question' => $question,
+                'partial' => self::MAP_PARTIAL_TITLE[$title],
+            ]
+        );
     }
 
     /**
