@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
 use App\Repository\QuestionRepository;
-use App\Service\TaskService;
+use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +17,7 @@ class ExamController extends AbstractController
 {
     public function __construct(
         private QuestionRepository $questionRepository,
-    )
-    {
+    ) {
     }
 
     /**
@@ -27,7 +26,7 @@ class ExamController extends AbstractController
     public function exam(): Response
     {
         return $this->render('exam/index.html.twig', [
-            'questions' => $this->questionRepository->getQuestionsForExam(3)
+            'questions' => $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS),
         ]);
     }
 

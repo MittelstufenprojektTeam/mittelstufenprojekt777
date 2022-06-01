@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Entity\Option;
 use App\Entity\Question;
 use App\Repository\OptionRepository;
-use App\Repository\QuestionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,10 +19,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
     public function __construct(
-        private TaskService        $taskService,
-        private OptionRepository   $optionRepository
-    )
-    {
+        private TaskService $taskService,
+        private OptionRepository $optionRepository
+    ) {
     }
 
     /**
@@ -75,7 +72,7 @@ class TaskController extends AbstractController
      */
     public function freeTextResultSelfRating(int|string $questionId, Request $request): Response
     {
-        $option = $this->optionRepository->findOneBy(['question' => $questionId]);
+        $this->optionRepository->findOneBy(['question' => $questionId]);
 
         $answer = (bool)$request->request->get('correctAnswered', 0);
         // todo: update the answer (has correct answered the free text y/n)
