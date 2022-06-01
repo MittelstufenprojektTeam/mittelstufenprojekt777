@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Entity\Question;
 use App\Repository\OptionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
