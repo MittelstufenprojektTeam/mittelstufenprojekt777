@@ -31,23 +31,21 @@ final class Version20220511072703 extends AbstractMigration
         $this->addSql('INSERT INTO display_type (title) VALUES ("checkbox")');
         $this->addSql('INSERT INTO display_type (title) VALUES ("string-comparison")');
         $this->addSql('INSERT INTO display_type (title) VALUES ("free-text")');
-        $this->addSql('INSERT INTO display_type (title) VALUES ("string-comparison")');
         $this->addSql('INSERT INTO display_type (title) VALUES ("radio")');
-        $this->addSql('INSERT INTO display_type (title) VALUES ("string-comparison")');
         /*--------------------------------question-------------------------------------*/
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Welche vier der folgenden Angaben müssen laut Berufsbildungsgesetz nicht in den Berufsausbildungsvertrag aufgenommen werden? ", 1)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Erklären Sie kurz den Begriff Webhosting", 3)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Wie hoch ist der Mehrwertsteuerbetrag bei 19% auf 500,00€? ", 2)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Welche Punkte sind für einen ergonomischen Arbeitsplatz Wichtig? ", 1)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Verkürzen Sie diese IPv6-Adresse: AF00:0000:0000:E255:0000:0001:332D:81FA", 6)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Für was steht die Abkürzung AP:", 4)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Wandeln Sie die Dualzahl 111110100001 in eine Hexadezimalzahl um.", 6)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Bei der Schutzbedarfsfeststellung für Clients werden die drei Grundwerte „Vertraulichkeit – /User Eingabe/ – Verfügbarkeit“ betrachtet", 4)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Verkürzen Sie diese IPv6-Adresse: AF00:0000:0000:E255:0000:0001:332D:81FA", 2)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Für was steht die Abkürzung AP:", 2)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Wandeln Sie die Dualzahl 111110100001 in eine Hexadezimalzahl um.", 2)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Bei der Schutzbedarfsfeststellung für Clients werden die drei Grundwerte „Vertraulichkeit – /User Eingabe/ – Verfügbarkeit“ betrachtet", 2)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Was regelt die DSGVO und was regelt das BDSG?", 3)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("For ist eine", 5)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("For ist eine", 4)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Geben Sie als Java Code die Summe x = 10 & y = 20 aus", 3)');
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Unterscheiden Sie zwischen Berufskrankheiten und allgemeinen Krankheiten.", 3)');
-        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Die Weisungen des /User Eingabe/ sind zu befolgen.", 4)');
+        $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Die Weisungen des /User Eingabe/ sind zu befolgen.", 2)');
         /*--------------------------------topic_question-------------------------------------*/
         $this->addSql('INSERT INTO topic_question (topic_id, question_id) VALUES (1, 1)');
         $this->addSql('INSERT INTO topic_question (topic_id, question_id) VALUES (1, 2)');
