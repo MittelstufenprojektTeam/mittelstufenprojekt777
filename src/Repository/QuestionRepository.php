@@ -42,25 +42,23 @@ class QuestionRepository extends ServiceEntityRepository
 
     public function getQuestionsForExam(int $amount): array
     {
-        $questions = [];
-        for ($i = 0; $i < $amount; $i++) {
-            $questions[] = $this->findOneRandom();
-        }
+        $allQuestions = $this->findAll();
+        shuffle($allQuestions);
 
-        return $questions;
+        return array_slice($allQuestions, 0, $amount);
     }
 
     public function findOneRandom(): ?Question
     {
-        $questions = $this->findAll();
-        $qu = $questions[array_rand($questions)];
+        $allQuestions = $this->findAll();
+        $question = $allQuestions[array_rand($allQuestions)];
 
-        $options = $this->optionRepository->findBy(['question' => $qu->getId()]);
+        $options = $this->optionRepository->findBy(['question' => $question->getId()]);
 
         foreach ($options as $option) {
-            $qu->addOption($option);
+            $question->addOption($option);
         }
 
-        return $qu;
+        return $question;
     }
 }
