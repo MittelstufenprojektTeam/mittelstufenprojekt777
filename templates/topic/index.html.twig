@@ -1,4 +1,18 @@
 {% extends "base.html.twig" %}
-{% block body%}
-    {% include '_partials/' ~  partial ~ '.html.twig' %}
+{% block body %}
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <div>
+            <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'id': question.id}) }}">
+                {% include '_partials/' ~  partial ~ '.html.twig' %}
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-success">
+                        Bestätigen
+                    </button>
+                    <button type="button" onclick="window.location.reload();" class="btn btn-secondary">
+                        Eine andere zufällige Aufgabe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

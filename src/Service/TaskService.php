@@ -99,20 +99,14 @@ class TaskService
 
     // todo ersetzen durch Datenbankabfrage für
     // select text from Option where question_id = $id and solution = true
-    public function getCorrectAnswers(int $id): array
+    public function getCorrectAnswers(array $options): array
     {
-        $correctAnswers = [];
-        $options = $this->mockCheckboxQuestion()->getOptions();
-        /**
-         * @var Option $option
-         */
-        foreach ($options as $option) {
-            if ($option->getSolution()) {
-                $correctAnswers[] = $option->getText();
-            }
-        }
+        $correctAnswers = array_filter($options, static function ($option) {
+            /** @var Option $option */
+            return $option->getSolution();
+        });
 
-        return $correctAnswers;
+        return array_values($correctAnswers);
     }
 
     public function getAnswers(Request $request): array
@@ -134,15 +128,16 @@ class TaskService
         return $userAnswer && $correctAnswer && $userAnswer->getId() === $correctAnswer->getId();
     }
 
-    public function checkRadioButtonByText(null|Option $correctAnswer, null|Option $userAnswer): bool
+    public function checkRadioButtonByText(null|Option $userAnswer): bool
     {
-        return $userAnswer && $correctAnswer && $userAnswer->getText() === $correctAnswer->getText();
+        return $userAnswer && $userAnswer->getSolution();
     }
 
-    public function getCorrectRadioAnswer(Question $question): null|Option
+    /** @param Option[] $options */
+    public function getCorrectRadioAnswer(array $options): null|Option
     {
         $solution = null;
-        foreach ($question->getOptions() as $option) {
+        foreach ($options as $option) {
             if ($option->getSolution()) {
                 $solution = $option;
                 break;
@@ -166,10 +161,13 @@ class TaskService
         return $userAnswer;
     }
 
-    public function getUserAnswerByText(Question $question, string $answer)
+    public function getUserAnswerByText(array $options, Request $request): ?Option
     {
         $userAnswer = null;
-        foreach ($question->getOptions() as $option) {
+        $answer = $request->request->get('answer', -1);
+
+        /** @var Option $option */
+        foreach ($options as $option) {
             if ($option->getText() === $answer) {
                 $userAnswer = $option;
                 break;

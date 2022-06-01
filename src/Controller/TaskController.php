@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Option;
 use App\Entity\Question;
+use App\Repository\OptionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,12 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TaskController extends AbstractController
 {
-    public function __construct(private TaskService $taskService)
+    public function __construct(private TaskService $taskService, private OptionRepository $optionRepository)
     {
     }
 
     /**
-     * @Route("/string/result/{id}", name="string_comparison_result")
+     * @Route("/string/result/{id}", name="string-comparison_result")
      */
     public function stringComparisonResult(int|string $id, Request $request): Response
     {
@@ -46,7 +47,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/free-text/result/{id}", name="free_text_result")
+     * @Route("/free-text/result/{id}", name="free-text_result")
      */
     public function freeTextResult(int|string $id, Request $request): Response
     {
@@ -87,8 +88,10 @@ class TaskController extends AbstractController
      */
     public function checkboxResult(int $id, Request $request): Response
     {
+        $option = $this->optionRepository->findBy(['question' => $id]);
+
         $answers = $this->taskService->getAnswers($request);
-        $correctAnswers = $this->taskService->getCorrectAnswers($id);
+        $correctAnswers = $this->taskService->getCorrectAnswers($option);
 
         return $this->render(
             'exam/result.html.twig',
@@ -107,19 +110,18 @@ class TaskController extends AbstractController
      */
     public function radioResult(int|string $id, Request $request): Response
     {
-        $question = $this->taskService->mockRadioQuestion();
+        //todo: options müssen richtig gefetcht werden
+        $options = $this->optionRepository->findBy(['question' => $id]);
 
-        $answer = $request->request->get('answer', ''); // id from the option
-
-        $userOption = $this->taskService->getUserAnswerByText($question, $answer);
-        $solution = $this->taskService->getCorrectRadioAnswer($question);
+        $userOption = $this->taskService->getUserAnswerByText($options, $request);
+        $solution = $this->taskService->getCorrectRadioAnswer($options);
 
         return $this->render(
             'exam/result.html.twig',
             [
                 'template' => 'radio',
                 'params' => [
-                    'isCorrect' => $this->taskService->checkRadioButtonByText($solution, $userOption),
+                    'isCorrect' => $this->taskService->checkRadioButtonByText($userOption),
                     'answer' => $solution?->getText(),
                     'userAnswer' => $userOption?->getText(),
                 ],
