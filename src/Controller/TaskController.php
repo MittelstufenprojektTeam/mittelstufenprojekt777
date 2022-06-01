@@ -109,9 +109,9 @@ class TaskController extends AbstractController
     {
         $question = $this->taskService->mockRadioQuestion();
 
-        $answer = $request->request->get('answer', ''); // id from the option
+        $answer = $request->request->get('answer', '');
 
-        $userOption = $this->taskService->getUserAnswerByText($question, $answer);
+        $userSelection = $this->taskService->getUserAnswerByText($question, $answer);
         $solution = $this->taskService->getCorrectRadioAnswer($question);
 
         return $this->render(
@@ -119,9 +119,9 @@ class TaskController extends AbstractController
             [
                 'template' => 'radio',
                 'params' => [
-                    'isCorrect' => $this->taskService->checkRadioButtonByText($solution, $userOption),
+                    'isCorrect' => $this->taskService->checkRadioButtonByText($solution, $userSelection),
                     'answer' => $solution?->getText(),
-                    'userAnswer' => $userOption?->getText(),
+                    'userAnswer' => $userSelection?->getText(),
                 ],
             ]
         );
