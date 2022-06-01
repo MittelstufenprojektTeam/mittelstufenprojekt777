@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Entity\Option;
 use App\Entity\Question;
+use App\Repository\OptionRepository;
+use App\Repository\QuestionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,17 +20,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TaskController extends AbstractController
 {
-    public function __construct(private TaskService $taskService)
+    public function __construct(
+        private TaskService        $taskService,
+        private OptionRepository   $optionRepository
+    )
     {
     }
 
     /**
-     * @Route("/string/result/{id}", name="string_comparison_result")
+     * @Route("/string/result/{questionId}", name="string_comparison_result")
      */
-    public function stringComparisonResult(int|string $id, Request $request): Response
+    public function stringComparisonResult(int|string $questionId, Request $request): Response
     {
-        $questions = $this->taskService->mockQuestions();
-        $option = $questions[$id]->getOptions()[0];
+        $option = $this->optionRepository->findOneBy(['question' => $questionId]);
 
         $answer = $request->request->get('answer', '');
 
@@ -46,17 +50,16 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/free-text/result/{id}", name="free_text_result")
+     * @Route("/free-text/result/{questionId}", name="free_text_result")
      */
-    public function freeTextResult(int|string $id, Request $request): Response
+    public function freeTextResult(int|string $questionId, Request $request): Response
     {
-        $questions = $this->taskService->mockQuestions();
-        $option = $questions[$id]->getOptions()[0];
+        $option = $this->optionRepository->findOneBy(['question' => $questionId]);
 
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            ':exam:result.html.twig',
+            'exam/result.html.twig',
             [
                 'template' => 'free-text',
                 'params' => [
@@ -68,12 +71,11 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/free-text/result/self-rating/{id}", name="free_text_result_self_rating")
+     * @Route("/free-text/result/self-rating/{questionId}", name="free_text_result_self_rating")
      */
-    public function freeTextResultSelfRating(int|string $id, Request $request): Response
+    public function freeTextResultSelfRating(int|string $questionId, Request $request): Response
     {
-        $questions = $this->taskService->mockQuestions();
-        $questions[$id]->getOptions();
+        $option = $this->optionRepository->findOneBy(['question' => $questionId]);
 
         $answer = (bool)$request->request->get('correctAnswered', 0);
         // todo: update the answer (has correct answered the free text y/n)
@@ -83,12 +85,12 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/checkbox/result/{id}", name="checkbox_result")
+     * @Route("/checkbox/result/{questionId}", name="checkbox_result")
      */
-    public function checkboxResult(int $id, Request $request): Response
+    public function checkboxResult(int $questionId, Request $request): Response
     {
         $answers = $this->taskService->getAnswers($request);
-        $correctAnswers = $this->taskService->getCorrectAnswers($id);
+        $correctAnswers = $this->taskService->getCorrectAnswers($questionId);
 
         return $this->render(
             'exam/result.html.twig',
@@ -105,7 +107,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/radio/result/{id}", name="radio_result")
      */
-    public function radioResult(int|string $id, Request $request): Response
+    public function radioResult(int|string $questionId, Request $request): Response
     {
         $question = $this->taskService->mockRadioQuestion();
 
