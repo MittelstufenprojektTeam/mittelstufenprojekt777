@@ -15,17 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TopicController extends AbstractController
 {
-    /* todo: remove this const and update the index method, after the db for display_type is updated */
-    private const MAP_PARTIAL_TITLE = [
-        'Freitext' => 'free_text',
-        'Eine Einzelne Antwortmoeglichkeit' => 'radio',
-        'Eine Einzelnes Wort' => 'string_comparison',
-        'Rechenaufgabe' => 'string_comparison',
-        'Stringvergleich' => 'string_comparison',
-        'Mehrfachauswahl' => 'checkbox',
-
-    ];
-
     /**
      * @Route("/", name="_index")
      */
@@ -42,7 +31,7 @@ class TopicController extends AbstractController
             'topic/index.html.twig',
             [
                 'question' => $question,
-                'partial' => self::MAP_PARTIAL_TITLE[$title],
+                'partial' => str_replace('-', '_', $title),
             ]
         );
     }
