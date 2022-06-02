@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Question;
-use App\Repository\QuestionRepository;
 use App\Service\ExamService;
-use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
