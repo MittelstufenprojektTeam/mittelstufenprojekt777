@@ -34,7 +34,7 @@ class ReferenceController extends AbstractController
     {
         return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'lf1',
-            self::LF => 1
+            self::LF => 1,
         ]);
     }
 
@@ -45,7 +45,7 @@ class ReferenceController extends AbstractController
     {
         return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'lf2',
-            self::LF => 2
+            self::LF => 2,
         ]);
     }
 
@@ -54,9 +54,9 @@ class ReferenceController extends AbstractController
      */
     public function lf3(): Response
     {
-        return $this->render('reference/index.html.twig',  [
+        return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'lf3',
-            self::LF => 3
+            self::LF => 3,
         ]);
     }
 
@@ -65,9 +65,9 @@ class ReferenceController extends AbstractController
      */
     public function lf4(): Response
     {
-        return $this->render('reference/index.html.twig',  [
+        return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'lf4',
-            self::LF => 4
+            self::LF => 4,
         ]);
     }
 
@@ -76,9 +76,9 @@ class ReferenceController extends AbstractController
      */
     public function lf5(): Response
     {
-        return $this->render('reference/index.html.twig',  [
+        return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'lf5',
-            self::LF => 5
+            self::LF => 5,
         ]);
     }
 
@@ -87,9 +87,9 @@ class ReferenceController extends AbstractController
      */
     public function politik(): Response
     {
-        return $this->render('reference/index.html.twig',  [
+        return $this->render('reference/index.html.twig', [
             self::CONTENT_PARTIAL => 'politik',
-            self::LF => -2
+            self::LF => -2,
         ]);
     }
 }
