@@ -36,7 +36,7 @@ final class Version20220601090011 extends AbstractMigration
         $this->addSql('UPDATE `option` SET solution = 1  WHERE id=23');
         $this->addSql('UPDATE `option` SET solution = 1  WHERE id=27');
         $this->addSql('UPDATE `option` SET solution = 1  WHERE id=28');
-        $this->addSql('UPDATE `option` SET solution = 1  WHERE id= 29');
+        $this->addSql('UPDATE `option` SET solution = 1  WHERE id=29');
     }
 
     public function down(Schema $schema): void
