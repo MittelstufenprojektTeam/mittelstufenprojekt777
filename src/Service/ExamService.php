@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Question;
 use App\Repository\QuestionRepository;
 use App\Utility\Utility;
-use Exception;
 
 class ExamService
 {
