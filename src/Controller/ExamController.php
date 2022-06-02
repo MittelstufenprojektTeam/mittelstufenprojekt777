@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Repository\QuestionRepository;
-use App\Service\ExamSingleton;
+use App\Service\ExamService;
 use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ExamController extends AbstractController
 {
-    private ExamSingleton $exam;
 
-    public function __construct()
+    public function __construct(
+        private ExamService $exam,
+    )
     {
-        $this->exam = ExamSingleton::getInstance();
     }
 
     /**

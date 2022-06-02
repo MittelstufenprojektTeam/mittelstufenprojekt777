@@ -7,40 +7,20 @@ use App\Repository\QuestionRepository;
 use App\Utility\Utility;
 use Exception;
 
-class ExamSingleton
+class ExamService
 {
-    private static ?ExamSingleton $instance = null;
-
     /**
      * @var Question[]
      */
     private array $questions;
     private int $currentQuestion;
-    private QuestionRepository $questionRepository;
 
-    private function __construct()
+    private function __construct(
+        private QuestionRepository $questionRepository
+    )
     {
-    }
-
-    private function __clone()
-    {
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function __wakeup()
-    {
-        throw new Exception("Cannot unserialize a singleton.");
-    }
-
-    public static function getInstance(): ExamSingleton
-    {
-        if (static::$instance === null) {
-            static::$instance = new static();
-        }
-
-        return static::$instance;
+        $this->currentQuestion = 0;
+        $this->questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
     }
 
     public function getQuestion(): Question
@@ -50,8 +30,6 @@ class ExamSingleton
 
     public function getFirstQuestion(): Question
     {
-        $this->currentQuestion = 0;
-        $this->questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
         return $this->getQuestion();
     }
 
@@ -68,5 +46,4 @@ class ExamSingleton
 
         return $this->getQuestion();
     }
-
 }
