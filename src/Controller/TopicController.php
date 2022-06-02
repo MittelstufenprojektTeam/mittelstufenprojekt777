@@ -11,22 +11,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/topic", name="topic_")
+ * @Route("/topic", name="topic")
  */
 class TopicController extends AbstractController
 {
+    /* todo: remove this const and update the index method, after the db for display_type is updated */
     private const MAP_PARTIAL_TITLE = [
-        'Freitext' => 'free-text',
+        'Freitext' => 'free_text',
         'Eine Einzelne Antwortmoeglichkeit' => 'radio',
-        'Eine Einzelnes Wort' => 'string-comparison',
-        'Rechenaufgabe' => 'string-comparison',
-        'Stringvergleich' => 'string-comparison',
+        'Eine Einzelnes Wort' => 'string_comparison',
+        'Rechenaufgabe' => 'string_comparison',
+        'Stringvergleich' => 'string_comparison',
         'Mehrfachauswahl' => 'checkbox',
 
     ];
 
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="_index")
      */
     public function topic(QuestionRepository $repository): Response
     {
@@ -34,7 +35,7 @@ class TopicController extends AbstractController
 
         $title = $question?->getDisplayType()?->getTitle();
         if (!$title) {
-            throw new Exception('Some cool error msg');
+            throw new Exception(sprintf('displaytype for question with id %s could not be found', $question?->getId()));
         }
 
         return $this->render(

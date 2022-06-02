@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\Repository\OptionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,11 +73,9 @@ class TaskController extends AbstractController
     {
         $this->optionRepository->findOneBy(['question' => $questionId]);
 
-        $answer = (bool)$request->request->get('correctAnswered', 0);
-        // todo: update the answer (has correct answered the free text y/n)
+        $request->request->get('correctAnswered', 0);
 
-        // todo: redirect to next Question
-        return new JsonResponse(['correctAnswered' => $answer]);
+        return new RedirectResponse('/topic');
     }
 
     /**
@@ -97,6 +95,7 @@ class TaskController extends AbstractController
                 'params' => [
                     'isCorrect' => $this->taskService->compareCheckbox($correctAnswers, $answers),
                     'correctAnswers' => $correctAnswers,
+                    'userSelectionList' => $answers,
                 ],
             ]
         );
@@ -109,7 +108,7 @@ class TaskController extends AbstractController
     {
         $options = $this->optionRepository->findBy(['question' => $questionId]);
 
-        $userOption = $this->taskService->getUserAnswerByText($options, $request);
+        $userSelection = $this->taskService->getUserRadioAnswerByText($options, $request);
         $solution = $this->taskService->getCorrectRadioAnswer($options);
 
         return $this->render(
@@ -117,7 +116,7 @@ class TaskController extends AbstractController
             [
                 'template' => 'radio',
                 'params' => [
-                    'isCorrect' => $this->taskService->checkRadioButtonByText($userOption),
+                    'isCorrect' => $this->taskService->checkRadioButtonByText($userSelection),
                     'answer' => $solution?->getText(),
                     'userAnswer' => $userSelection?->getText(),
                 ],

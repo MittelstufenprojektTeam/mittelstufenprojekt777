@@ -11,8 +11,9 @@
     <div>
         <p>Deine antwort: </p>
 {#      todo: show user answer  #}
-        {% for answer in correctAnswers %}
-            <ul>{{ answer.text }}</ul>
+        {% for selection in userSelectionList %}
+            <ul>{{ selection }}</ul>
         {% endfor %}
     </div>
 {% endif %}
+{% include '_partials/next-random-question.html.twig' %}

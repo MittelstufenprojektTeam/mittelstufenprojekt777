@@ -2,7 +2,7 @@
 {% block body %}
     <div class="d-flex justify-content-center flex-column align-items-center">
         <div>
-            <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'id': question.id}) }}">
+            <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'questionId': question.id}) }}">
                 {% include '_partials/' ~  partial ~ '.html.twig' %}
                 <div class="mt-5">
                     <button type="submit" class="btn btn-success">
