@@ -6,5 +6,5 @@ namespace App\Utility;
 
 class Utility
 {
-    public const AMOUNT_EXAM_QUESTIONS = 10;
+    public const AMOUNT_EXAM_QUESTIONS = 2;
 }
