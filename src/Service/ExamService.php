@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -16,8 +18,7 @@ class ExamService
 
     private function __construct(
         private QuestionRepository $questionRepository
-    )
-    {
+    ) {
         $this->currentQuestion = 0;
         $this->questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
     }
@@ -32,14 +33,14 @@ class ExamService
         return $this->getQuestion();
     }
 
-    public function getNextQuestion()
+    public function getNextQuestion(): Question
     {
         $this->currentQuestion++;
 
         return $this->getQuestion();
     }
 
-    public function getPrevQuestion()
+    public function getPrevQuestion(): Question
     {
         $this->currentQuestion--;
 
