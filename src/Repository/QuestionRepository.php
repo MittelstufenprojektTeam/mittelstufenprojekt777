@@ -6,8 +6,6 @@ namespace App\Repository;
 
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,15 +16,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class QuestionRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, private OptionRepository $optionRepository)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        private OptionRepository $optionRepository
+    ) {
         parent::__construct($registry, Question::class);
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
     public function add(Question $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -35,10 +31,6 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
     public function remove(Question $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
@@ -47,34 +39,25 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Question[] Returns an array of Question objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getQuestionsForExam(int $amount): array
     {
-        return $this->createQueryBuilder('q')
-            ->andWhere('q.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('q.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $allQuestions = $this->findAll();
+        shuffle($allQuestions);
+
+        return array_slice($allQuestions, 0, $amount);
     }
-    */
 
     public function findOneRandom(): ?Question
     {
-        $questions = $this->findAll();
-        $qu = $questions[array_rand($questions)];
+        $allQuestions = $this->findAll();
+        $question = $allQuestions[array_rand($allQuestions)];
 
-        $options = $this->optionRepository->findBy(['question' => $qu->getId()]);
+        $options = $this->optionRepository->findBy(['question' => $question->getId()]);
 
         foreach ($options as $option) {
-            $qu->addOption($option);
+            $question->addOption($option);
         }
 
-        return $qu;
+        return $question;
     }
 }
