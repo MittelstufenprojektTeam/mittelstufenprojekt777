@@ -1,49 +1,50 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Service;
 
 use App\Entity\Question;
+use App\Entity\Task;
+use App\Entity\User;
 use App\Repository\QuestionRepository;
+use App\Repository\TaskRepository;
 use App\Utility\Utility;
+use Exception;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ExamService
 {
-    /**
-     * @var Question[]
-     */
-    private array $questions;
-    private int $currentQuestion;
-
-    private function __construct(
-        private QuestionRepository $questionRepository
-    ) {
-        $this->currentQuestion = 0;
-        $this->questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
+    public function __construct(
+        private QuestionRepository $questionRepository,
+        private TaskRepository     $taskRepository,
+    )
+    {
     }
 
-    public function getQuestion(): Question
+    public function getQuestion(int $position, User $user): Question
     {
-        return $this->questions[$this->currentQuestion];
+        return $this->taskRepository->findOneBy([
+            'user' => $user,
+            'position' => $position,
+        ])?->getQuestion();
     }
 
-    public function getFirstQuestion(): Question
+    public function create(User|UserInterface $user): void
     {
-        return $this->getQuestion();
-    }
+        $currentQuestion = 0;
+        $questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
+//todo save exam in table
+        foreach ($questions as $question) {
+            $task = new Task();
+            $task->setPosition($currentQuestion);
+            $task->setQuestion($question);
+            $task->setUser($user);
+            try {
+                $this->taskRepository->add($task);
+            } catch (Exception $e) {
 
-    public function getNextQuestion(): Question
-    {
-        $this->currentQuestion++;
-
-        return $this->getQuestion();
-    }
-
-    public function getPrevQuestion(): Question
-    {
-        $this->currentQuestion--;
-
-        return $this->getQuestion();
+            }
+        }
     }
 }
