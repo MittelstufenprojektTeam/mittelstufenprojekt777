@@ -1,22 +1,27 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Service\ExamService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/exam", name="exam_")
  */
 class ExamController extends AbstractController
 {
+    private User|UserInterface $user;
+
     public function __construct(
         private ExamService $exam,
-    ) {
+    )
+    {
     }
 
     /**
@@ -24,8 +29,12 @@ class ExamController extends AbstractController
      */
     public function exam(): Response
     {
+        $this->createExam();
+        /** @var \App\Entity\User|UserInterface $user */
+        $user = $this->getUser();
+
         return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getFirstQuestion(),
+            'question' => $this->exam->getQuestion(1, $user),
         ]);
     }
 
@@ -34,8 +43,11 @@ class ExamController extends AbstractController
      */
     public function nextQuestion(): Response
     {
+        /** @var \App\Entity\User|UserInterface $user */
+        $user = $this->getUser();
+
         return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getNextQuestion(),
+            'question' => $this->exam->getQuestion(1, $user),
         ]);
     }
 
@@ -44,8 +56,19 @@ class ExamController extends AbstractController
      */
     public function previousQuestion(): Response
     {
+        /** @var \App\Entity\User|UserInterface $user */
+        $user = $this->getUser();
+
         return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getPrevQuestion(),
+            'question' => $this->exam->getQuestion(1, $user),
         ]);
+    }
+
+    private function createExam(): void
+    {
+        /** @var \App\Entity\User|UserInterface $user */
+        $user = $this->getUser();
+
+        $this->exam->create($user);
     }
 }
