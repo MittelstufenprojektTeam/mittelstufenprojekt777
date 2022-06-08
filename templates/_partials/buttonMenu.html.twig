@@ -1,6 +1,6 @@
 <button class="btn btn-primary" type="reset">{% trans %}button.reset{% endtrans %}</button>
 <a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position - 1 }) }}"
-   role="button">{% trans %}button.back{% endtrans %}</a>
-<a class="btn btn-primary" href="{{ path('home') }}" role="button">Zurück zum Hauptmenü</a>
-<a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position + 1 }) }}"
    role="button">{% trans %}button.previous{% endtrans %}</a>
+<a class="btn btn-primary" href="{{ path('home') }}" role="button">{% trans %}button.home{% endtrans %}</a>
+<a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position + 1 }) }}"
+   role="button">{% trans %}button.next{% endtrans %}</a>
