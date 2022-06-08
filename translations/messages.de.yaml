@@ -1,4 +1,8 @@
-task:
+warning:
   too:
     high: Es gibt keine nächste Aufgabe
     low: Es gibt keine vorherige Aufgabe
+button:
+  back: Zurück
+  previous: Nächste
+  reset: Reset
