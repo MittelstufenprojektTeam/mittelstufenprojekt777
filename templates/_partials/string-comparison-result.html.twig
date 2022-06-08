@@ -1,7 +1,8 @@
 {% if isCorrect %}
-<h1>Korrekt</h1>
+    <h1>Korrekt</h1>
 {% else %}
-<h1>falsch</h1>
-deine antwort: {{ userAnswer }}
-Richtig währe: {{ answer }}
+    <h1>falsch</h1>
+    deine antwort: {{ userAnswer }}
+    Richtig währe: {{ answer }}
 {% endif %}
+{% include '_partials/next-random-question.html.twig' %}

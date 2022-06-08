@@ -1,11 +1,19 @@
 {% if isCorrect %}
     <h1>Deine Antwort war korrekt!</h1>
-    {% for answer in correctAnswers %}
-        <ul>{{ answer }}</ul>
-    {% endfor %}
 {% else %}
     <h1>Deine Antwort war falsch, dies sind die richtigen Antworten</h1>
-    {% for answer in correctAnswers %}
-        <ul>{{ answer }}</ul>
-    {% endfor %}
+    <div>
+        <p>korrekt wäre:</p>
+        {% for answer in correctAnswers %}
+            <ul>{{ answer.text }}</ul>
+        {% endfor %}
+    </div>
+    <div>
+        <p>Deine antwort: </p>
+{#      todo: show user answer  #}
+        {% for selection in userSelectionList %}
+            <ul>{{ selection }}</ul>
+        {% endfor %}
+    </div>
 {% endif %}
+{% include '_partials/next-random-question.html.twig' %}
