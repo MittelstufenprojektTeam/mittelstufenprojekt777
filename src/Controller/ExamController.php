@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/exam", name="exam_")
@@ -19,6 +20,7 @@ class ExamController extends AbstractController
 {
     public function __construct(
         private ExamService $exam,
+        private TranslatorInterface  $translator,
     )
     {
     }
@@ -34,10 +36,10 @@ class ExamController extends AbstractController
 
         if ($taskPosition < 0) {
             $taskPosition = 0;
-            $this->addFlash('warning', 'bound too low');
+            $this->addFlash('warning', $this->translator->trans('task.too.low'));
         } elseif ($taskPosition > Utility::AMOUNT_EXAM_QUESTIONS - 1) {
             $taskPosition = Utility::AMOUNT_EXAM_QUESTIONS - 1;
-            $this->addFlash('warning', 'bound too high');
+            $this->addFlash('warning', $this->translator->trans('task.too.high'));
         }
 
         if ($this->exam->getQuestion($taskPosition, $user) === null) {

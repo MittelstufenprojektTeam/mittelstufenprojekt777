@@ -1,0 +1,4 @@
+task:
+  too:
+    high: Es gibt keine nächste Aufgabe
+    low: Es gibt keine vorherige Aufgabe
