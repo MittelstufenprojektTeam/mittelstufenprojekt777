@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('task_' ~ question.displayType.title ~ '_result', {'questionId': question.id }) }}">
+    {% include '_partials/warning.html.twig' %}
+    {% include '_partials/question.html.twig' %}
+</form>

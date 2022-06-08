@@ -40,7 +40,7 @@ class ExamController extends AbstractController
             $this->addFlash('warning', $this->translator->trans('warning.too.high'));
         }
 
-        if ($this->exam->getQuestion($taskPosition, $user) === null) {
+        if ($this->exam->getQuestion(0, $user) === null) {
             $this->exam->create($user);
         }
 
