@@ -7,3 +7,11 @@ button:
   next: Nächste
   reset: Reset
   home: Zurück zum Hauptmenü
+nav:
+  home: Home
+  logout: Logout
+  exam: Prüfung
+  feedback: Feedback
+  reference: Nachschlagewerk
+  topics: Lernfelder
+
