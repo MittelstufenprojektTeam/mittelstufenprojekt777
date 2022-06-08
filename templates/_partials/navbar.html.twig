@@ -1,32 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
-    <a class="navbar-brand ms-2" href="{{ url('home') }}">Navigation</a>
+    <a class="navbar-brand ms-2" href="{{ path('home') }}">Navigation</a>
     <div class="collapse navbar-collapse d-flex justify-content-between">
         <div>
             <ul class="navbar-nav">
                 <li class="nav-item me-1">
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'home' ? 'active' : '' }}"
-                       href="{{ url('home') }}">Home</a>
+                       href="{{ path('home') }}">Home</a>
                 </li>
                 <li class="nav-item me-1">
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'exam_index' ? 'active' : '' }}"
-                       href="{{ url('exam_index') }}">Prüfung</a>
+                       href="{{ path('exam_index') }}">Prüfung</a>
                 </li>
                 <li class="nav-item me-1">
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'reference_index' ? 'active' : '' }}"
-                       href="{{ url('reference_index') }}">Nachschlagewerk</a>
+                       href="{{ path('reference_index') }}">Nachschlagewerk</a>
                 </li>
                 <li class="nav-item me-1">
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'topic_index' ? 'active' : '' }}"
-                       href="{{ url('topic_index') }}">Lernfelder</a>
+                       href="{{ path('topic_index') }}">Lernfelder</a>
                 </li>
                 <li class="nav-item me-1">
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'feedback' ? 'active' : '' }}"
-                       href="{{ url('feedback') }}">Feedback</a>
+                       href="{{ path('feedback') }}">Feedback</a>
                 </li>
             </ul>
         </div>
         <div class="me-5 mt-2 mb-2">
-            <a class="nav-item ms-5 bg-danger rounded nav-link text-black" href="{{ url('app_logout') }}">Logout</a>
+            <a class="nav-item ms-5 bg-danger rounded nav-link text-black" href="{{ path('app_logout') }}">Logout</a>
         </div>
     </div>
 </nav>
