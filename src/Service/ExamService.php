@@ -34,7 +34,6 @@ class ExamService
     {
         $currentQuestion = 0;
         $questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
-//todo save exam in table
         foreach ($questions as $position => $question) {
             $task = new Task();
             $task->setPosition($currentQuestion);
