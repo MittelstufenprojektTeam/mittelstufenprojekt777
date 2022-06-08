@@ -20,21 +20,14 @@ class Question
     #[ORM\Column(type: 'text')]
     private ?string $phrase = null;
 
-    #[ORM\ManyToMany(targetEntity: Topic::class, mappedBy: 'QuestionList')]
+    #[ORM\ManyToOne(targetEntity: Topic::class)]
     private ArrayCollection $topics;
 
     #[ORM\ManyToOne(targetEntity: DisplayType::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?DisplayType $displayType = null;
 
-    #[ORM\OneToMany(mappedBy: 'questionId', targetEntity: Option::class, orphanRemoval: true)]
-    private ArrayCollection $options;
-
-    public function __construct()
-    {
-        $this->topics = new ArrayCollection();
-        $this->options = new ArrayCollection();
-    }
+    private ?ArrayCollection $options = null;
 
     public function getId(): ?int
     {
@@ -65,7 +58,6 @@ class Question
     {
         if (!$this->topics->contains($topic)) {
             $this->topics[] = $topic;
-            $topic->addQuestion($this);
         }
 
         return $this;
@@ -73,9 +65,7 @@ class Question
 
     public function removeTopic(Topic $topic): self
     {
-        if ($this->topics->removeElement($topic)) {
-            $topic->removeQuestion($this);
-        }
+        $this->topics->removeElement($topic);
 
         return $this;
     }
@@ -97,11 +87,19 @@ class Question
      */
     public function getOptions(): Collection
     {
+        if ($this->options === null) {
+            $this->options = new ArrayCollection();
+        }
+
         return $this->options;
     }
 
     public function addOption(Option $option): self
     {
+        if ($this->options === null) {
+            $this->options = new ArrayCollection();
+        }
+
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
             $option->setQuestion($this);

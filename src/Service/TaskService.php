@@ -73,6 +73,30 @@ class TaskService
         return $question;
     }
 
+    /**
+     * todo: replace this method with real queries from the database.
+     */
+    public function mockRadioQuestion(): Question
+    {
+        $displayType = new DisplayType();
+        $displayType->setTitle('radio');
+
+        $question = new Question();
+        $question->setDisplayType($displayType);
+        $question->setPhrase('dies ist eine radio-frage');
+
+        for ($i = 1; $i < 5; $i++) {
+            $option = new Option();
+            $option->setText('testOption' . $i);
+            if ($i === 1) {
+                $option->setSolution(true);
+            }
+            $question->addOption($option);
+        }
+
+        return $question;
+    }
+
     // todo ersetzen durch Datenbankabfrage für
     // select text from Option where question_id = $id and solution = true
     public function getCorrectAnswers(int $id): array
@@ -103,5 +127,55 @@ class TaskService
         }
 
         return array_keys($answers);
+    }
+
+    public function checkRadioButton(null|Option $correctAnswer, null|Option $userAnswer): bool
+    {
+        return $userAnswer && $correctAnswer && $userAnswer->getId() === $correctAnswer->getId();
+    }
+
+    public function checkRadioButtonByText(null|Option $correctAnswer, null|Option $userAnswer): bool
+    {
+        return $userAnswer && $correctAnswer && $userAnswer->getText() === $correctAnswer->getText();
+    }
+
+    public function getCorrectRadioAnswer(Question $question): null|Option
+    {
+        $solution = null;
+        foreach ($question->getOptions() as $option) {
+            if ($option->getSolution()) {
+                $solution = $option;
+                break;
+            }
+        }
+
+        return $solution;
+    }
+
+    /** should be used at the point, where the db is ready */
+    public function getUserAnswer(Question $question, int $userAnswerID): null|Option
+    {
+        $userAnswer = null;
+        foreach ($question->getOptions() as $option) {
+            if ($option->getId() === $userAnswerID) {
+                $userAnswer = $option;
+                break;
+            }
+        }
+
+        return $userAnswer;
+    }
+
+    public function getUserAnswerByText(Question $question, string $answer)
+    {
+        $userAnswer = null;
+        foreach ($question->getOptions() as $option) {
+            if ($option->getText() === $answer) {
+                $userAnswer = $option;
+                break;
+            }
+        }
+
+        return $userAnswer;
     }
 }
