@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Service\ExamService;
+use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,8 +17,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class ExamController extends AbstractController
 {
-    private User|UserInterface $user;
-
     public function __construct(
         private ExamService $exam,
     )
@@ -25,50 +24,35 @@ class ExamController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/{taskPosition}", name="index")
      */
-    public function exam(): Response
+    public function exam(int $taskPosition = 0): Response
     {
-        $this->createExam();
         /** @var \App\Entity\User|UserInterface $user */
         $user = $this->getUser();
+        $warning = null;
+
+        if ($taskPosition < 0) {
+            $taskPosition = 0;
+            $warning = 'bound_too_low';
+        } elseif ($taskPosition > Utility::AMOUNT_EXAM_QUESTIONS - 1) {
+            $taskPosition = Utility::AMOUNT_EXAM_QUESTIONS - 1;
+            $warning = 'bound_too_high';
+        }
+
+        if ($this->exam->getQuestion($taskPosition, $user) === null) {
+            $this->createExam($user);
+        }
 
         return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getQuestion(1, $user),
+            'question' => $this->exam->getQuestion($taskPosition, $user),
+            'position' => $taskPosition,
+            'warning' => $warning,
         ]);
     }
 
-    /**
-     * @Route("/next", name="nextQuestion")
-     */
-    public function nextQuestion(): Response
+    private function createExam(User|UserInterface $user): void
     {
-        /** @var \App\Entity\User|UserInterface $user */
-        $user = $this->getUser();
-
-        return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getQuestion(1, $user),
-        ]);
-    }
-
-    /**
-     * @Route("/prev", name="prevQuestion")
-     */
-    public function previousQuestion(): Response
-    {
-        /** @var \App\Entity\User|UserInterface $user */
-        $user = $this->getUser();
-
-        return $this->render('exam/index.html.twig', [
-            'question' => $this->exam->getQuestion(1, $user),
-        ]);
-    }
-
-    private function createExam(): void
-    {
-        /** @var \App\Entity\User|UserInterface $user */
-        $user = $this->getUser();
-
         $this->exam->create($user);
     }
 }

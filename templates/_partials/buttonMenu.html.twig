@@ -1,4 +1,6 @@
 <button class="btn btn-primary" type="reset">Reset</button>
-<a class="btn btn-primary" type="submit" href="{{ url('exam_prevQuestion') }}" role="button">Vorherige</a>
-<a class="btn btn-primary" href="{{ url('home') }}" role="button">Zurück zum Hauptmenü</a>
-<a class="btn btn-primary" type="submit" href="{{ url('exam_nextQuestion') }}" role="button">Nächste</a>
+<a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position - 1 }) }}"
+   role="button">Vorherige</a>
+<a class="btn btn-primary" href="{{ path('home') }}" role="button">Zurück zum Hauptmenü</a>
+<a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position + 1 }) }}"
+   role="button">Nächste</a>
