@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
@@ -43,12 +44,12 @@ class Task
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): null|User|UserInterface
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(null|User|UserInterface $user): self
     {
         $this->user = $user;
 

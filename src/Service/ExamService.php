@@ -22,7 +22,7 @@ class ExamService
     {
     }
 
-    public function getQuestion(int $position, User $user): Question
+    public function getQuestion(int $position, User $user): Question|null
     {
         return $this->taskRepository->findOneBy([
             'user' => $user,
@@ -35,11 +35,12 @@ class ExamService
         $currentQuestion = 0;
         $questions = $this->questionRepository->getQuestionsForExam(Utility::AMOUNT_EXAM_QUESTIONS);
 //todo save exam in table
-        foreach ($questions as $question) {
+        foreach ($questions as $position => $question) {
             $task = new Task();
             $task->setPosition($currentQuestion);
             $task->setQuestion($question);
             $task->setUser($user);
+            $task->setPosition($position);
             try {
                 $this->taskRepository->add($task);
             } catch (Exception $e) {
