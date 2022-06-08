@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Service\ExamService;
 use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
