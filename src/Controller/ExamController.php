@@ -34,10 +34,10 @@ class ExamController extends AbstractController
 
         if ($taskPosition < 0) {
             $taskPosition = 0;
-            $warning = 'bound_too_low';
+            $this->addFlash('warning', 'bound too low');
         } elseif ($taskPosition > Utility::AMOUNT_EXAM_QUESTIONS - 1) {
             $taskPosition = Utility::AMOUNT_EXAM_QUESTIONS - 1;
-            $warning = 'bound_too_high';
+            $this->addFlash('warning', 'bound too high');
         }
 
         if ($this->exam->getQuestion($taskPosition, $user) === null) {
