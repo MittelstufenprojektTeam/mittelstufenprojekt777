@@ -1,7 +1,11 @@
 <form method="post" action="{{ path('task_' ~ question.displayType.title ~ '_result', {'questionId': question.id }) }}">
-    {% if warning %}
-        {{ warning }}
-    {% endif %}
-    {% include '_partials/' ~  question.displayType.title ~ '.html.twig' %}
-    {% include "_partials/buttonMenu.html.twig" %}
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        {% include '_partials/' ~  question.displayType.title ~ '.html.twig' %}
+        {% include "_partials/buttonMenu.html.twig" %}
+    </div>
 </form>
