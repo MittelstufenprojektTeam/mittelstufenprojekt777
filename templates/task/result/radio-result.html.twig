@@ -1,0 +1,8 @@
+{% if isCorrect %}
+    <h1>Korrekt</h1>
+{% else %}
+    <h1>{% trans %}answer.answered.wrong{% endtrans %}</h1>
+    {% trans %}answer.your{% endtrans %} {{ userAnswer }}
+    {% trans %}answer.correct{% endtrans %}{{ answer }}
+{% endif %}
+{% include '_partials/next-random-question.html.twig' %}

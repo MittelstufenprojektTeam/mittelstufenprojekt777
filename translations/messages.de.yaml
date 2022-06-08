@@ -7,6 +7,7 @@ button:
   next: Nächste
   reset: Reset
   home: Zurück zum Hauptmenü
+  submit: Bestätigen
 nav:
   home: Home
   logout: Logout
@@ -15,3 +16,11 @@ nav:
   reference: Nachschlagewerk
   topics: Lernfelder
 
+answer:
+  your: Deine Antwort
+  our: Unsere Musterlösung
+  answered:
+    correct: richtig beantwortet
+    wrong: falsch beantwortet
+  correct: Richtig
+  wrong: Falsch

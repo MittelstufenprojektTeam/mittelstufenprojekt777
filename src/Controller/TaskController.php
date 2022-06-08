@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Repository\OptionRepository;
+use App\Repository\QuestionRepository;
 use App\Service\TaskService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,24 +19,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
     public function __construct(
-        private TaskService $taskService,
-        private OptionRepository $optionRepository
-    ) {
+        private TaskService        $taskService,
+        private OptionRepository   $optionRepository,
+        private QuestionRepository $questionRepository,
+    )
+    {
     }
 
     /**
-     * @Route("/string/result/{questionId}", name="string-comparison_result")
+     * @Route("/string/result/{questionId}", name="string_comparison_result")
      */
-    public function stringComparisonResult(int|string $questionId, Request $request): Response
+    public
+    function stringComparisonResult(int|string $questionId, Request $request): Response
     {
         $option = $this->optionRepository->findOneBy(['question' => $questionId]);
+        $question = $this->questionRepository->findOneBy(['id' => $questionId]);
 
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'exam/result.html.twig',
+            'task/result.html.twig',
             [
-                'template' => 'string-comparison',
+                'template' => $question->getDisplayType()->getTitle(),
                 'params' => [
                     'isCorrect' => $this->taskService->compareString($option, $answer),
                     'answer' => $option->getText(),
@@ -46,18 +51,20 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/free-text/result/{questionId}", name="free-text_result")
+     * @Route("/free-text/result/{questionId}", name="free_text_result")
      */
-    public function freeTextResult(int|string $questionId, Request $request): Response
+    public
+    function freeTextResult(int|string $questionId, Request $request): Response
     {
         $option = $this->optionRepository->findOneBy(['question' => $questionId]);
+        $question = $this->questionRepository->findOneBy(['id' => $questionId]);
 
         $answer = $request->request->get('answer', '');
 
         return $this->render(
-            'exam/result.html.twig',
+            'task/result.html.twig',
             [
-                'template' => 'free-text',
+                'template' => $question->getDisplayType()->getTitle(),
                 'params' => [
                     'answer' => $option->getText(),
                     'userAnswer' => $answer,
@@ -69,7 +76,8 @@ class TaskController extends AbstractController
     /**
      * @Route("/free-text/result/self-rating/{questionId}", name="free_text_result_self_rating")
      */
-    public function freeTextResultSelfRating(int|string $questionId, Request $request): Response
+    public
+    function freeTextResultSelfRating(int|string $questionId, Request $request): Response
     {
         $this->optionRepository->findOneBy(['question' => $questionId]);
 
@@ -81,17 +89,19 @@ class TaskController extends AbstractController
     /**
      * @Route("/checkbox/result/{questionId}", name="checkbox_result")
      */
-    public function checkboxResult(int $questionId, Request $request): Response
+    public
+    function checkboxResult(int $questionId, Request $request): Response
     {
         $option = $this->optionRepository->findBy(['question' => $questionId]);
+        $question = $this->questionRepository->findOneBy(['id' => $questionId]);
 
         $answers = $this->taskService->getAnswers($request);
         $correctAnswers = $this->taskService->getCorrectAnswers($option);
 
         return $this->render(
-            'exam/result.html.twig',
+            'task/result.html.twig',
             [
-                'template' => 'checkbox',
+                'template' => $question->getDisplayType()->getTitle(),
                 'params' => [
                     'isCorrect' => $this->taskService->compareCheckbox($correctAnswers, $answers),
                     'correctAnswers' => $correctAnswers,
@@ -104,17 +114,19 @@ class TaskController extends AbstractController
     /**
      * @Route("/radio/result/{questionId}", name="radio_result")
      */
-    public function radioResult(int|string $questionId, Request $request): Response
+    public
+    function radioResult(int|string $questionId, Request $request): Response
     {
         $options = $this->optionRepository->findBy(['question' => $questionId]);
+        $question = $this->questionRepository->findOneBy(['id' => $questionId]);
 
         $userSelection = $this->taskService->getUserRadioAnswerByText($options, $request);
         $solution = $this->taskService->getCorrectRadioAnswer($options);
 
         return $this->render(
-            'exam/result.html.twig',
+            'task/result.html.twig',
             [
-                'template' => 'radio',
+                'template' => $question->getDisplayType()->getTitle(),
                 'params' => [
                     'isCorrect' => $this->taskService->checkRadioButtonByText($userSelection),
                     'answer' => $solution?->getText(),
