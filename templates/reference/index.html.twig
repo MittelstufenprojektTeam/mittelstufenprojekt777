@@ -1,4 +1,48 @@
 {% extends "base.html.twig" %}
 {% block body%}
-    <h1 class="display-2">Nachschlagewerk</h1>
+        <div class="m-2 mt-3">
+            <div class="bs-example">
+                <ul class="nav nav-pills" style="margin-left: 1rem">
+                    <li  class="nav-item active">
+                        <a href="{{ path('reference_index') }}" class="nav-link tab-pills {{ lf == -1 ? 'active' : '' }}">
+                            <strong>Home</strong>
+                        </a>
+                    </li>
+                    <li  class="nav-item active">
+                        <a href="{{ path('reference_lf1') }}" class="nav-link tab-pills {{ lf == 1 ? 'active' : '' }}">
+                            <strong>LF 1</strong>
+                        </a>
+                    </li>
+                    <li  class="nav-item">
+                        <a href="{{ path('reference_lf2') }}" class="nav-link tab-pills {{ lf == 2 ? 'active' : '' }}">
+                            <strong>LF 2</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('reference_lf3') }}" class="nav-link tab-pills {{ lf == 3 ? 'active' : '' }}">
+                            <strong>LF 3</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('reference_lf4') }}" class="nav-link tab-pills {{ lf == 4 ? 'active' : '' }}">
+                            <strong>LF 4</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('reference_lf5') }}" class="nav-link tab-pills {{ lf == 5 ? 'active' : '' }}">
+                            <strong>LF 5</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('reference_politik') }}" class="nav-link tab-pills {{ lf == -2 ? 'active' : '' }}">
+                            <strong>Politik</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        {% include 'reference/' ~  content_partial ~ '.html.twig' %}
+    </div>
 {% endblock %}

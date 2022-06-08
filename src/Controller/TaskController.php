@@ -24,7 +24,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/string/result/{questionId}", name="string_comparison_result")
+     * @Route("/string/result/{questionId}", name="string-comparison_result")
      */
     public function stringComparisonResult(int|string $questionId, Request $request): Response
     {
@@ -46,7 +46,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/free-text/result/{questionId}", name="free_text_result")
+     * @Route("/free-text/result/{questionId}", name="free-text_result")
      */
     public function freeTextResult(int|string $questionId, Request $request): Response
     {

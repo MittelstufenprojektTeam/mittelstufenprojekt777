@@ -1,25 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a class="navbar-brand" href="#">Navigation</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('home') }}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('app_logout') }}">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('exam_index') }}">Prüfung</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('feedback') }}">Feedback</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('reference_index') }}">Nachschlagewerk</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('topic_index') }}">Lernfelder</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+    <a class="navbar-brand ms-2" href="{{ url('home') }}">Navigation</a>
+    <div class="collapse navbar-collapse d-flex justify-content-between">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item me-1">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'home' ? 'active' : '' }}"
+                       href="{{ url('home') }}">Home</a>
+                </li>
+                <li class="nav-item me-1">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'exam_index' ? 'active' : '' }}"
+                       href="{{ url('exam_index') }}">Prüfung</a>
+                </li>
+                <li class="nav-item me-1">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'reference_index' ? 'active' : '' }}"
+                       href="{{ url('reference_index') }}">Nachschlagewerk</a>
+                </li>
+                <li class="nav-item me-1">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'topic_index' ? 'active' : '' }}"
+                       href="{{ url('topic_index') }}">Lernfelder</a>
+                </li>
+                <li class="nav-item me-1">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'feedback' ? 'active' : '' }}"
+                       href="{{ url('feedback') }}">Feedback</a>
+                </li>
+            </ul>
+        </div>
+        <div class="me-5 mt-2 mb-2">
+            <a class="nav-item ms-5 bg-danger rounded nav-link text-black" href="{{ url('app_logout') }}">Logout</a>
+        </div>
     </div>
 </nav>
