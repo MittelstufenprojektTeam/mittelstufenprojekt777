@@ -19,8 +19,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ExamController extends AbstractController
 {
     public function __construct(
-        private ExamService $exam,
-        private TranslatorInterface  $translator,
+        private ExamService         $exam,
+        private TranslatorInterface $translator,
     )
     {
     }
@@ -42,17 +42,12 @@ class ExamController extends AbstractController
         }
 
         if ($this->exam->getQuestion($taskPosition, $user) === null) {
-            $this->createExam($user);
+            $this->exam->create($user);
         }
 
         return $this->render('exam/index.html.twig', [
             'question' => $this->exam->getQuestion($taskPosition, $user),
             'position' => $taskPosition,
         ]);
-    }
-
-    private function createExam(User|UserInterface $user): void
-    {
-        $this->exam->create($user);
     }
 }
