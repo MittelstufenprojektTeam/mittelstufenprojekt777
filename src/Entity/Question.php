@@ -21,7 +21,7 @@ class Question
     private ?string $phrase = null;
 
     #[ORM\ManyToOne(targetEntity: Topic::class)]
-    private ArrayCollection $topics;
+    private Topic $topic;
 
     #[ORM\ManyToOne(targetEntity: DisplayType::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -46,26 +46,14 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection<int, Topic>
-     */
-    public function getTopics(): Collection
+    public function getTopic(): Topic
     {
-        return $this->topics;
+        return $this->topic;
     }
 
-    public function addTopic(Topic $topic): self
+    public function setTopic(Topic $topic): self
     {
-        if (!$this->topics->contains($topic)) {
-            $this->topics[] = $topic;
-        }
-
-        return $this;
-    }
-
-    public function removeTopic(Topic $topic): self
-    {
-        $this->topics->removeElement($topic);
+        $this->topic = $topic;
 
         return $this;
     }
