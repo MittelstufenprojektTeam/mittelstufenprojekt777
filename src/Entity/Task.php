@@ -23,7 +23,7 @@ class Task
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToOne(targetEntity: Question::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Question::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
