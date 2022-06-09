@@ -1,0 +1,6 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>{% trans %}exam.result.your{% endtrans %}</h1>
+    <p>{{ "exam.result.points"|trans({'%userPoints%':userPoints, '%possiblePoints%':possiblePoints }) }}</p>
+    <p>{{ "exam.result.percent"|trans({'%percent%':percent}) }}</p>
+{% endblock %}

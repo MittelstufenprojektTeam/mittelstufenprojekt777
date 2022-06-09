@@ -25,7 +25,7 @@ class ExamController extends AbstractController
     }
 
     /**
-     * @Route("/{taskPosition}", name="index")
+     * @Route("/task/{taskPosition}", name="index")
      */
     public function exam(int $taskPosition = 0): Response
     {
@@ -47,6 +47,18 @@ class ExamController extends AbstractController
         return $this->render('exam/index.html.twig', [
             'question' => $this->exam->getQuestion($taskPosition, $user),
             'position' => $taskPosition,
+        ]);
+    }
+
+    /**
+     * @Route("/result", name="result")
+     */
+    public function result(): Response
+    {
+        return $this->render('exam/result.html.twig', [
+            'userPoints' => 5,
+            'possiblePoints' => 5,
+            'percent' => 5,
         ]);
     }
 }

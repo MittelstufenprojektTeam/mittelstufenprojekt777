@@ -4,3 +4,5 @@
 <a class="btn btn-primary" href="{{ path('home') }}" role="button">{% trans %}button.home{% endtrans %}</a>
 <a class="btn btn-primary" type="submit" href="{{ path('exam_index', { taskPosition: position + 1 }) }}"
    role="button">{% trans %}button.next{% endtrans %}</a>
+<a class="btn btn-primary" type="submit" href="{{ path('exam_result') }}"
+   role="button">{% trans %}button.handIn{% endtrans %}</a>
