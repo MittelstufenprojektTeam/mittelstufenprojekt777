@@ -73,13 +73,7 @@ class ExamController extends AbstractController
      */
     public function clear(): Response
     {
-        $tasks = $this->taskRepository->findBy([
-            'user' => $this->getUser(),
-        ]);
-
-        foreach ($tasks as $task) {
-            $this->taskRepository->remove($task);
-        }
+        $this->taskRepository->clearExam($this->getUser());
 
         return $this->forward('App\Controller\HomeController::homepage');
     }
