@@ -58,8 +58,8 @@ class ExamController extends AbstractController
      */
     public function result(): Response
     {
-        $userPoints = $this->exam->getPoints();
-        $possiblePoints = $this->exam->getPossiblePoints();
+        $userPoints = $this->exam->getPoints($this->getUser());
+        $possiblePoints = $this->exam->getPossiblePoints($this->getUser());
 
         return $this->render('exam/result.html.twig', [
             'userPoints' => $userPoints,

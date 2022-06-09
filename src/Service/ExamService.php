@@ -40,25 +40,47 @@ class ExamService
             $task->setQuestion($question);
             $task->setUser($user);
             $task->setPosition($position);
+            $task->setResult(0);
             try {
                 $this->taskRepository->add($task);
             } catch (Exception $e) {
-
             }
         }
     }
 
-    public function getPoints(): int
+    public function getPoints(User|UserInterface $user): float
     {
-        return 5;
+        $points = 0;
+        $tasks = $this->taskRepository->findBy([
+            'user' => $user,
+        ]);
+
+        foreach ($tasks as $task) {
+            $points += $task->getResult();
+        }
+
+        return $points;
     }
 
-    public function getPossiblePoints(): int
+    public function getPossiblePoints(User|UserInterface $user): float
     {
-        return 5;
+        $possiblePoints = 0;
+        $tasks = $this->taskRepository->findBy([
+            'user' => $user,
+        ]);
+
+        foreach ($tasks as $task) {
+            $taskOptions = $task->getQuestion()->getOptions();
+
+            foreach ($taskOptions as $taskOption) {
+                $possiblePoints += $taskOption->getPoints();
+            }
+        }
+
+        return $possiblePoints;
     }
 
-    public function calculatePercent(int $userPoints, int $possiblePoints): float
+    public function calculatePercent(float $userPoints, float $possiblePoints = 1): float
     {
         $result = ($userPoints / $possiblePoints) * 100;
 

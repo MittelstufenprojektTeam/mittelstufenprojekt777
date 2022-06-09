@@ -27,7 +27,13 @@ class Question
     #[ORM\JoinColumn(nullable: false)]
     private ?DisplayType $displayType = null;
 
-    private ?ArrayCollection $options = null;
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Option::class, orphanRemoval: true)]
+    private $options;
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,19 +93,11 @@ class Question
      */
     public function getOptions(): Collection
     {
-        if ($this->options === null) {
-            $this->options = new ArrayCollection();
-        }
-
         return $this->options;
     }
 
     public function addOption(Option $option): self
     {
-        if ($this->options === null) {
-            $this->options = new ArrayCollection();
-        }
-
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
             $option->setQuestion($this);
@@ -110,9 +108,11 @@ class Question
 
     public function removeOption(Option $option): self
     {
-        // set the owning side to null (unless already changed)
-        if ($this->options->removeElement($option) && $option->getQuestion() === $this) {
-            $option->setQuestion(null);
+        if ($this->options->removeElement($option)) {
+            // set the owning side to null (unless already changed)
+            if ($option->getQuestion() === $this) {
+                $option->setQuestion(null);
+            }
         }
 
         return $this;
