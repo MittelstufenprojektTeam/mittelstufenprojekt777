@@ -47,4 +47,21 @@ class ExamService
             }
         }
     }
+
+    public function getPoints(): int
+    {
+        return 5;
+    }
+
+    public function getPossiblePoints(): int
+    {
+        return 5;
+    }
+
+    public function calculatePercent(int $userPoints, int $possiblePoints): float
+    {
+        $result = ($userPoints / $possiblePoints) * 100;
+
+        return round($result);
+    }
 }
