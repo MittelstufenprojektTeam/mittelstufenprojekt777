@@ -24,7 +24,6 @@ class TopicController extends AbstractController
      */
     public function topic(): Response
     {
-
         return $this->render(
             'topic/index.html.twig',
             [

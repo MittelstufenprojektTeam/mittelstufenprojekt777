@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -17,9 +17,8 @@ class ExamService
 {
     public function __construct(
         private QuestionRepository $questionRepository,
-        private TaskRepository     $taskRepository,
-    )
-    {
+        private TaskRepository $taskRepository,
+    ) {
     }
 
     public function getQuestion(int $position, User $user): Question|null
@@ -42,8 +41,7 @@ class ExamService
             $task->setPosition($position);
             try {
                 $this->taskRepository->add($task);
-            } catch (Exception $e) {
-
+            } catch (Exception) {
             }
         }
     }

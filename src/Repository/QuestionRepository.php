@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Repository;
 
 use App\Entity\Question;
-use App\Entity\Topic;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use RuntimeException;
@@ -19,10 +18,9 @@ use RuntimeException;
 class QuestionRepository extends ServiceEntityRepository
 {
     public function __construct(
-        ManagerRegistry          $registry,
+        ManagerRegistry $registry,
         private OptionRepository $optionRepository
-    )
-    {
+    ) {
         parent::__construct($registry, Question::class);
     }
 
@@ -54,8 +52,7 @@ class QuestionRepository extends ServiceEntityRepository
     {
         $allQuestions = $this->findAll();
 
-        $filteredQuestions = array_filter($allQuestions, static function ($question) use ($topicID) {
-            /** @var Topic $topic */
+        $filteredQuestions = array_filter($allQuestions, static function ($question) use ($topicID): bool {
             return $question->getTopic()->getId() === $topicID;
         });
 
