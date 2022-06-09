@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
     <h1 class="display-2">{% trans %}nav.exam{% endtrans %}</h1>
+    {% include "_partials/warning.html.twig" %}
     {% include "_partials/question.html.twig" with {'question': question} %}
 {% endblock %}
