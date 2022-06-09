@@ -26,6 +26,9 @@ class Option
     #[ORM\Column(type: 'boolean')]
     private ?bool $solution = null;
 
+    #[ORM\Column(type: 'float')]
+    private float $points;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +66,18 @@ class Option
     public function setSolution(bool $solution): self
     {
         $this->solution = $solution;
+
+        return $this;
+    }
+
+    public function getPoints(): ?float
+    {
+        return $this->points;
+    }
+
+    public function setPoints(float $points): self
+    {
+        $this->points = $points;
 
         return $this;
     }

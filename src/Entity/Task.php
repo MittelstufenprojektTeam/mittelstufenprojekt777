@@ -27,6 +27,9 @@ class Task
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
+    #[ORM\Column(type: 'float')]
+    private float $result;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,6 +67,18 @@ class Task
     public function setQuestion(Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getResult(): ?float
+    {
+        return $this->result;
+    }
+
+    public function setResult(float $result): self
+    {
+        $this->result = $result;
 
         return $this;
     }
