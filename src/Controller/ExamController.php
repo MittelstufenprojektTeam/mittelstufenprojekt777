@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Repository\TaskRepository;
 use App\Service\ExamService;
+use App\Service\TaskService;
 use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,7 @@ class ExamController extends AbstractController
         private ExamService         $exam,
         private TranslatorInterface $translator,
         private TaskRepository      $taskRepository,
+        private TaskService         $taskService,
     )
     {
     }
@@ -50,6 +52,23 @@ class ExamController extends AbstractController
         return $this->render('exam/index.html.twig', [
             'question' => $this->exam->getQuestion($taskPosition, $user),
             'position' => $taskPosition,
+        ]);
+    }
+
+    /**
+     * @Route("/evaluation/{taskPosition}", name="evaluation")
+     */
+    public function evaluateTask(int $taskPosition): Response
+    {
+//        todo die letzte aufgabe muss auf richtigkeit überprüft werden, und die erzielten punkte in der datenbank (task tabelle) abgespeichert werden)
+//        match ()
+//        $this->taskService->checkRadioButtonByText();
+//        $this->taskService->compareString();
+//        $this->taskService->compareCheckbox();
+//        $this->taskService->
+
+        return $this->redirectToRoute("exam_index", [
+            'taskPosition' => $taskPosition
         ]);
     }
 
