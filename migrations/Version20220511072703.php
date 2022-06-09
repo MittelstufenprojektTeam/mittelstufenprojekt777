@@ -29,8 +29,8 @@ final class Version20220511072703 extends AbstractMigration
         $this->addSql('INSERT INTO topic (title) VALUES ("POL")');
         /*--------------------------------display-------------------------------------*/
         $this->addSql('INSERT INTO display_type (title) VALUES ("checkbox")');
-        $this->addSql('INSERT INTO display_type (title) VALUES ("string-comparison")');
-        $this->addSql('INSERT INTO display_type (title) VALUES ("free-text")');
+        $this->addSql('INSERT INTO display_type (title) VALUES ("string_comparison")');
+        $this->addSql('INSERT INTO display_type (title) VALUES ("free_text")');
         $this->addSql('INSERT INTO display_type (title) VALUES ("radio")');
         /*--------------------------------question-------------------------------------*/
         $this->addSql('INSERT INTO question (phrase, display_type_id) VALUES ("Welche vier der folgenden Angaben müssen laut Berufsbildungsgesetz nicht in den Berufsausbildungsvertrag aufgenommen werden? ", 1)');
