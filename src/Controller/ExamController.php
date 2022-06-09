@@ -55,10 +55,13 @@ class ExamController extends AbstractController
      */
     public function result(): Response
     {
+        $userPoints = $this->exam->getPoints();
+        $possiblePoints = $this->exam->getPossiblePoints();
+
         return $this->render('exam/result.html.twig', [
-            'userPoints' => 5,
-            'possiblePoints' => 5,
-            'percent' => 5,
+            'userPoints' => $userPoints,
+            'possiblePoints' => $possiblePoints,
+            'percent' => $this->exam->calculatePercent($userPoints, $possiblePoints),
         ]);
     }
 }
