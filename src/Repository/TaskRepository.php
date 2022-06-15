@@ -51,4 +51,16 @@ class TaskRepository extends ServiceEntityRepository
             $this->remove($task);
         }
     }
+
+    public function savePoints(int $points, int $taskPosition, User|UserInterface $user): void
+    {
+        $task = $this->findOneBy([
+            'position' => $taskPosition,
+            'user' => $user->getId(),
+        ]);
+        if ($task) {
+            $task->setResult($points);
+            $this->add($task);
+        }
+    }
 }

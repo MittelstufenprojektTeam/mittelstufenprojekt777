@@ -1,17 +1,26 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Service;
 
 use App\Entity\Option;
+use App\Entity\User;
+use App\Repository\TaskRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @see \App\Tests\Service\TaskServiceTest
  */
 class TaskService
 {
+    public function __construct(
+        private TaskRepository $taskRepository,
+    )
+    {
+    }
+
     public function compareString(Option $option, string $answer): bool
     {
         return $option->getText() === $answer;
@@ -44,7 +53,7 @@ class TaskService
         /**
          * @var array $answers
          */
-        $answers = $request->request->get('options', null);
+        $answers = $request->request->get('options');
 
         if (empty($answers)) {
             $answers = [];
@@ -89,5 +98,10 @@ class TaskService
         }
 
         return $userAnswer;
+    }
+
+    public function savePoints(int $points, int $taskPosition, User|UserInterface $user): void
+    {
+        $this->taskRepository->savePoints($points, $taskPosition, $user);
     }
 }
