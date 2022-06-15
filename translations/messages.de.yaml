@@ -1,7 +1,8 @@
 warning:
-  too:
-    high: Es gibt keine nächste Aufgabe
-    low: Es gibt keine vorherige Aufgabe
+  taskPosition:
+    too:
+      high: Es gibt keine nächste Aufgabe
+      low: Es gibt keine vorherige Aufgabe
 button:
   previous: Zurück
   next: Nächste

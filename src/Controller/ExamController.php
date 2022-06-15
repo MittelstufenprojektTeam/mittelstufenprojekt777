@@ -46,10 +46,10 @@ class ExamController extends AbstractController
 
         if ($taskPosition < 0) {
             $taskPosition = 0;
-            $this->addFlash('warning', $this->translator->trans('warning.too.low'));
+            $this->addFlash('warning', $this->translator->trans('warning.taskPosition.too.low'));
         } elseif ($taskPosition > Utility::AMOUNT_EXAM_QUESTIONS - 1) {
             $taskPosition = Utility::AMOUNT_EXAM_QUESTIONS - 1;
-            $this->addFlash('warning', $this->translator->trans('warning.too.high'));
+            $this->addFlash('warning', $this->translator->trans('warning.taskPosition.too.high'));
         }
 
         return $this->render('exam/index.html.twig', [
