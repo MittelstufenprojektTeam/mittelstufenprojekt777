@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Utility\Utility;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use RuntimeException;
@@ -42,9 +43,15 @@ class QuestionRepository extends ServiceEntityRepository
 
     public function getQuestionsForExam(int $amount): array
     {
-        $allQuestions = $this->findAll();
-        shuffle($allQuestions);
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('q')
+            ->where('q.displayType != :display_type')
+            ->setParameter('display_type', Utility::DISPLAY_TYPE_FREE_TEXT);
 
+        $allQuestions = $qb->getQuery()->execute();
+
+        shuffle($allQuestions);
         return array_slice($allQuestions, 0, $amount);
     }
 
