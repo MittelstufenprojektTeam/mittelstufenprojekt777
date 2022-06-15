@@ -70,11 +70,6 @@ class ExamService
 
         foreach ($tasks as $task) {
             $possiblePoints++;
-//            $taskOptions = $task->getQuestion()->getOptions();
-//
-//            foreach ($taskOptions as $taskOption) {
-//                $possiblePoints += $taskOption->getPoints();
-//            }
         }
 
         return $possiblePoints;

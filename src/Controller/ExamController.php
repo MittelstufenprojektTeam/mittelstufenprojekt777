@@ -69,11 +69,9 @@ class ExamController extends AbstractController
 
         $question = $this->exam->getQuestion($taskPosition, $user);
         $questionId = $question->getId();
-        // AF00::E255:0:1:332D:81FA
         $points = match ($question->getDisplayType()->getId()) {
             1 => $this->taskService->compareCheckbox($this->optionRepository->getCorrectAnswerByQuestionId($questionId), $this->taskService->getAnswers($request)),
             2 => $this->taskService->compareString($this->optionRepository->findOneBy(['question' => $questionId]), $request->request->get('answer', '')),
-//            3 => $this->taskService->
             4 => $this->taskService->checkRadioButtonByText($this->taskService->getUserRadioAnswerByText($this->optionRepository->findBy(['question' => $questionId]), $request)),
             default => false,
         };
