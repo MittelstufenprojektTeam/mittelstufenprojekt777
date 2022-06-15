@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Entity\User;
 use App\Repository\TaskRepository;
 use App\Service\ExamService;
+use App\Service\TaskService;
 use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +21,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ExamController extends AbstractController
 {
     public function __construct(
-        private ExamService $exam,
+        private ExamService         $exam,
         private TranslatorInterface $translator,
-        private TaskRepository $taskRepository,
-    ) {
+        private TaskRepository      $taskRepository,
+        private TaskService         $taskService,
+    )
+    {
     }
 
     /**
@@ -32,7 +34,7 @@ class ExamController extends AbstractController
      */
     public function exam(int $taskPosition = 0): Response
     {
-        /** @var User|UserInterface $user */
+        /** @var \App\Entity\User|UserInterface $user */
         $user = $this->getUser();
 
         if ($this->exam->getQuestion(0, $user) === null) {
@@ -54,12 +56,29 @@ class ExamController extends AbstractController
     }
 
     /**
+     * @Route("/evaluation/{taskPosition}", name="evaluation")
+     */
+    public function evaluateTask(int $taskPosition): Response
+    {
+//        todo die letzte aufgabe muss auf richtigkeit überprüft werden, und die erzielten punkte in der datenbank (task tabelle) abgespeichert werden)
+//        match ()
+//        $this->taskService->checkRadioButtonByText();
+//        $this->taskService->compareString();
+//        $this->taskService->compareCheckbox();
+//        $this->taskService->
+
+        return $this->redirectToRoute("exam_index", [
+            'taskPosition' => $taskPosition
+        ]);
+    }
+
+    /**
      * @Route("/result", name="result")
      */
     public function result(): Response
     {
-        $userPoints = $this->exam->getPoints();
-        $possiblePoints = $this->exam->getPossiblePoints();
+        $userPoints = $this->exam->getPoints($this->getUser());
+        $possiblePoints = $this->exam->getPossiblePoints($this->getUser());
 
         return $this->render('exam/result.html.twig', [
             'userPoints' => $userPoints,

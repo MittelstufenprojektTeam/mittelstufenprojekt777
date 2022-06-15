@@ -1,0 +1,18 @@
+<div>
+    <h1>{% trans %}answer.our{% endtrans %}</h1>
+    {{ params.answer }}
+</div>
+<div>
+    <h2>{% trans %}answer.your{% endtrans %}</h2>
+    {{ params.userAnswer }}
+</div>
+
+<form method="post" action="{{ path('task_free_text_result_self_rating', {questionId: 1}) }}">
+    <label>{% trans %}answer.answered.correct{% endtrans %}
+        <input type="radio" name="correctAnswered" value="1">
+    </label>
+    <label>{% trans %}answer.answered.wrong{% endtrans %}
+        <input type="radio" name="correctAnswered" value="0">
+    </label>
+    <button type="submit">{% trans %}button.submit{% endtrans %}</button>
+</form>

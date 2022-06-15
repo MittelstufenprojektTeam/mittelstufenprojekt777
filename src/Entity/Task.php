@@ -25,7 +25,10 @@ class Task
 
     #[ORM\OneToOne(targetEntity: Question::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Question $question = null;
+    private Question $question;
+
+    #[ORM\Column(type: 'float')]
+    private float $result;
 
     public function getId(): ?int
     {
@@ -56,7 +59,7 @@ class Task
         return $this;
     }
 
-    public function getQuestion(): ?Question
+    public function getQuestion(): Question
     {
         return $this->question;
     }
@@ -64,6 +67,18 @@ class Task
     public function setQuestion(Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getResult(): ?float
+    {
+        return $this->result;
+    }
+
+    public function setResult(float $result): self
+    {
+        $this->result = $result;
 
         return $this;
     }

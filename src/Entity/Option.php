@@ -19,12 +19,15 @@ class Option
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $text = null;
 
-    #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'options')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Question $question = null;
-
     #[ORM\Column(type: 'boolean')]
     private ?bool $solution = null;
+
+    #[ORM\Column(type: 'float')]
+    private float $points;
+
+    #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'options')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $question;
 
     public function getId(): ?int
     {
@@ -43,18 +46,6 @@ class Option
         return $this;
     }
 
-    public function getQuestion(): ?Question
-    {
-        return $this->question;
-    }
-
-    public function setQuestion(?Question $question): self
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
     public function getSolution(): ?bool
     {
         return $this->solution;
@@ -63,6 +54,30 @@ class Option
     public function setSolution(bool $solution): self
     {
         $this->solution = $solution;
+
+        return $this;
+    }
+
+    public function getPoints(): ?float
+    {
+        return $this->points;
+    }
+
+    public function setPoints(float $points): self
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }
