@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Repository\OptionRepository;
 use App\Entity\Task;
 use App\Entity\User;
 use App\Repository\TaskRepository;
@@ -11,6 +12,7 @@ use App\Service\ExamService;
 use App\Service\TaskService;
 use App\Utility\Utility;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -22,10 +24,13 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ExamController extends AbstractController
 {
     public function __construct(
-        private ExamService $exam,
+        private ExamService         $exam,
         private TranslatorInterface $translator,
-        private TaskRepository $taskRepository,
-    ) {
+        private TaskRepository      $taskRepository,
+        private OptionRepository    $optionRepository,
+        private TaskService         $taskService,
+    )
+    {
     }
 
     /**
@@ -57,17 +62,33 @@ class ExamController extends AbstractController
     /**
      * @Route("/evaluation/{taskPosition}", name="evaluation")
      */
-    public function evaluateTask(int $taskPosition): Response
+    public function evaluateTask(int $taskPosition, Request $request): Response
     {
-//        todo die letzte aufgabe muss auf richtigkeit überprüft werden, und die erzielten punkte in der datenbank (task tabelle) abgespeichert werden)
-//        match ()
-//        $this->taskService->checkRadioButtonByText();
-//        $this->taskService->compareString();
-//        $this->taskService->compareCheckbox();
-//        $this->taskService->
+
+        /** @var \App\Entity\User|UserInterface $user */
+        $user = $this->getUser();
+
+        $question = $this->exam->getQuestion($taskPosition, $user);
+        $questionId = $question->getId();
+//AF00::E255:0:1:332D:81FA
+        $points = match ($question->getDisplayType()->getId()) {
+            1 => $this->taskService->compareCheckbox($this->optionRepository->getCorrectAnswerByQuestionId($questionId), $this->taskService->getAnswers($request)),
+            2 => $this->taskService->compareString($this->optionRepository->findOneBy(['question' => $questionId]), $request->request->get('answer', '')),
+//            3 => $this->taskService->
+            4 => $this->taskService->checkRadioButtonByText($this->taskService->getUserRadioAnswerByText($this->optionRepository->findBy(['question' => $questionId]), $request)),
+            default => false,
+        };
+
+        if ($points) {
+            $points = 1;
+        } else {
+            $points = 0;
+        }
+
+        $this->taskService->savePoints($points, $taskPosition, $user);
 
         return $this->redirectToRoute('exam_index', [
-            'taskPosition' => $taskPosition,
+            'taskPosition' => $taskPosition + 1
         ]);
     }
 
