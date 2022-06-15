@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -18,9 +18,10 @@ use RuntimeException;
 class QuestionRepository extends ServiceEntityRepository
 {
     public function __construct(
-        ManagerRegistry $registry,
+        ManagerRegistry          $registry,
         private OptionRepository $optionRepository
-    ) {
+    )
+    {
         parent::__construct($registry, Question::class);
     }
 
