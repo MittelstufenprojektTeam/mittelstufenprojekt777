@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -17,12 +17,11 @@ class ExamService
 {
     public function __construct(
         private QuestionRepository $questionRepository,
-        private TaskRepository     $taskRepository,
-    )
-    {
+        private TaskRepository $taskRepository,
+    ) {
     }
 
-    public function getQuestion(int $position, User $user): Question|null
+    public function getQuestion(int $position, User|UserInterface $user): Question|null
     {
         return $this->taskRepository->findOneBy([
             'user' => $user,
@@ -43,7 +42,7 @@ class ExamService
             $task->setResult(0);
             try {
                 $this->taskRepository->add($task);
-            } catch (Exception $e) {
+            } catch (Exception) {
             }
         }
     }

@@ -28,7 +28,7 @@ class Question
     private ?DisplayType $displayType = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Option::class, orphanRemoval: true)]
-    private $options;
+    private Collection $options;
 
     public function __construct()
     {
@@ -96,11 +96,9 @@ class Question
 
     public function removeOption(Option $option): self
     {
-        if ($this->options->removeElement($option)) {
-            // set the owning side to null (unless already changed)
-            if ($option->getQuestion() === $this) {
-                $option->setQuestion(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->options->removeElement($option) && $option->getQuestion() === $this) {
+            $option->setQuestion(null);
         }
 
         return $this;

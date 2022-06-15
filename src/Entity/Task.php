@@ -21,7 +21,7 @@ class Task
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private null|User|UserInterface $user = null;
 
     #[ORM\OneToOne(targetEntity: Question::class, cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
