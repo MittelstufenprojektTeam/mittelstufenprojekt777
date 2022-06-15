@@ -1,18 +1,66 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="d-flex justify-content-center flex-column align-items-center">
-        <div>
-            <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'questionId': question.id}) }}">
-                {% include '_partials/' ~  partial ~ '.html.twig' %}
-                <div class="mt-5">
-                    <button type="submit" class="btn btn-success">
-                        Bestätigen
-                    </button>
-                    <button type="button" onclick="window.location.reload();" class="btn btn-secondary">
-                        Eine andere zufällige Aufgabe
-                    </button>
-                </div>
-            </form>
+    <div class="m-2 mt-3">
+        <div class="bs-example">
+            <ul class="nav nav-pills" style="margin-left: 1rem">
+                <li class="nav-item active">
+                    <a href="{{ path('topic_index') }}" class="nav-link tab-pills {{ lf == -1 ? 'active' : '' }}">
+                        <strong>Home</strong>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{{ path('topic_1') }}" class="nav-link tab-pills {{ lf == 1 ? 'active' : '' }}">
+                        <strong>LF 1</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('topic_2') }}" class="nav-link tab-pills {{ lf == 2 ? 'active' : '' }}">
+                        <strong>LF 2</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('topic_3') }}" class="nav-link tab-pills {{ lf == 3 ? 'active' : '' }}">
+                        <strong>LF 3</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('topic_4') }}" class="nav-link tab-pills {{ lf == 4 ? 'active' : '' }}">
+                        <strong>LF 4</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('topic_5') }}" class="nav-link tab-pills {{ lf == 5 ? 'active' : '' }}">
+                        <strong>LF 5</strong>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('topic_POL') }}" class="nav-link tab-pills {{ lf == 'POL' ? 'active' : '' }}">
+                        <strong>Politik</strong>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
+
+    {% if lf == -1 %}
+        <div class="d-flex justify-content-center align-items-center">
+            {% include '_partials/task_home.html.twig' %}
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div>
+                <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'questionId': question.id}) }}">
+                    {% include '_partials/' ~  partial ~ '.html.twig' %}
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-success">
+                            Bestätigen
+                        </button>
+                        <button type="button" onclick="window.location.reload();" class="btn btn-secondary">
+                            Eine andere zufällige Aufgabe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

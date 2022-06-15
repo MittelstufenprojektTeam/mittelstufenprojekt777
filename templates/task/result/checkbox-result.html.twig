@@ -3,17 +3,17 @@
 {% else %}
     <h1>Deine Antwort war falsch, dies sind die richtigen Antworten</h1>
     <div>
-        <p>korrekt wäre:</p>
+        <p>{% trans %}answer.answered.correct{% endtrans %}</p>
         {% for answer in correctAnswers %}
             <ul>{{ answer.text }}</ul>
         {% endfor %}
     </div>
     <div>
-        <p>Deine antwort: </p>
-{#      todo: show user answer  #}
+        <p>{% trans %}answer.your{% endtrans %}</p>
+        {#      todo: show user answer  #}
         {% for selection in userSelectionList %}
             <ul>{{ selection }}</ul>
         {% endfor %}
     </div>
 {% endif %}
-{% include '_partials/next-random-question.html.twig' %}
+{% include 'topic/next-random-question.html.twig' %}

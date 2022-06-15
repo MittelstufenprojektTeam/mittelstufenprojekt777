@@ -1,4 +1,7 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    {% include '_partials/' ~ template ~ '-result.html.twig' with params %}
+    <h1>{% trans %}exam.result.your{% endtrans %}</h1>
+    <p>{{ "exam.result.points"|trans({'%userPoints%':userPoints, '%possiblePoints%':possiblePoints }) }}</p>
+    <p>{{ "exam.result.percent"|trans({'%percent%':percent}) }}</p>
+    <a class="btn btn-primary" href="{{ path('exam_clear') }}" role="button">{% trans %}button.home{% endtrans %}</a>
 {% endblock %}

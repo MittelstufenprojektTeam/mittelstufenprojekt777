@@ -47,6 +47,14 @@ class OptionRepository extends ServiceEntityRepository
         }
     }
 
+    public function getCorrectAnswerByQuestionId(int $questionId): array
+    {
+        return $this->findBy([
+            'question' => $questionId,
+            'solution' => true,
+        ]);
+    }
+
     // /**
     //  * @return Option[] Returns an array of Option objects
     //  */

@@ -44,7 +44,7 @@ class TaskService
         /**
          * @var array $answers
          */
-        $answers = $request->request->get('options', null);
+        $answers = $request->request->get('options');
 
         if (empty($answers)) {
             $answers = [];

@@ -1,0 +1,35 @@
+warning:
+  taskPosition:
+    too:
+      high: Es gibt keine nächste Aufgabe
+      low: Es gibt keine vorherige Aufgabe
+button:
+  previous: Zurück
+  next: Nächste
+  reset: Reset
+  home: Zurück zum Hauptmenü
+  submit: Bestätigen
+  handIn: Abgeben
+
+nav:
+  home: Home
+  logout: Logout
+  exam: Prüfung
+  feedback: Feedback
+  reference: Nachschlagewerk
+  topics: Lernfelder
+
+answer:
+  your: Deine Antwort
+  our: Unsere Musterlösung
+  answered:
+    correct: richtig beantwortet
+    wrong: falsch beantwortet
+  correct: Richtig
+  wrong: Falsch
+
+exam:
+  result:
+    points: Du hast %userPoints% Punkte von %possiblePoints% Punkten erzielt.
+    percent: Das sind %percent% %
+    your: Dein Ergebnis

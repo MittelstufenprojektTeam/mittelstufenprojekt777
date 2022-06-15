@@ -1,0 +1,12 @@
+<button class="btn btn-primary" type="reset">{% trans %}button.reset{% endtrans %}</button>
+
+<button class="btn btn-primary" type="submit" formaction="{{ path('exam_index', { taskPosition: position - 1 }) }}"
+   role="button">{% trans %}button.previous{% endtrans %}</button>
+
+<button class="btn btn-primary" formaction="{{ path('home') }}" role="button">{% trans %}button.home{% endtrans %}</button>
+
+<button class="btn btn-primary" type="submit" formaction="{{ path('exam_evaluation', { taskPosition: position }) }}"
+   role="button">{% trans %}button.next{% endtrans %}</button>
+
+<button class="btn btn-primary" type="submit" formaction="{{ path('exam_result') }}"
+   role="button">{% trans %}button.handIn{% endtrans %}</button>

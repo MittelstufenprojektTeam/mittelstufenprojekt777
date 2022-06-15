@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Utility\Utility;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use RuntimeException;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -41,16 +43,32 @@ class QuestionRepository extends ServiceEntityRepository
 
     public function getQuestionsForExam(int $amount): array
     {
-        $allQuestions = $this->findAll();
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('q')
+            ->where('q.displayType != :display_type')
+            ->setParameter('display_type', Utility::DISPLAY_TYPE_FREE_TEXT);
+
+        $allQuestions = $qb->getQuery()->execute();
+
         shuffle($allQuestions);
 
         return array_slice($allQuestions, 0, $amount);
     }
 
-    public function findOneRandom(): ?Question
+    public function findOneRandom(int $topicID): ?Question
     {
         $allQuestions = $this->findAll();
-        $question = $allQuestions[array_rand($allQuestions)];
+
+        $filteredQuestions = array_filter($allQuestions, static function ($question) use ($topicID): bool {
+            return $question->getTopic()->getId() === $topicID;
+        });
+
+        if (empty($filteredQuestions)) {
+            throw new RuntimeException(sprintf('no Question for topic with id %s', $topicID));
+        }
+
+        $question = $filteredQuestions[array_rand($filteredQuestions)];
 
         $options = $this->optionRepository->findBy(['question' => $question->getId()]);
 
