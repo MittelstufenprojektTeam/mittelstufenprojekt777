@@ -52,6 +52,7 @@ class QuestionRepository extends ServiceEntityRepository
         $allQuestions = $qb->getQuery()->execute();
 
         shuffle($allQuestions);
+
         return array_slice($allQuestions, 0, $amount);
     }
 
