@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\User;
 use App\Repository\TaskRepository;
 use App\Service\ExamService;
 use App\Service\TaskService;
@@ -21,12 +22,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ExamController extends AbstractController
 {
     public function __construct(
-        private ExamService         $exam,
+        private ExamService $exam,
         private TranslatorInterface $translator,
-        private TaskRepository      $taskRepository,
-        private TaskService         $taskService,
-    )
-    {
+        private TaskRepository $taskRepository,
+    ) {
     }
 
     /**
@@ -34,7 +33,7 @@ class ExamController extends AbstractController
      */
     public function exam(int $taskPosition = 0): Response
     {
-        /** @var \App\Entity\User|UserInterface $user */
+        /** @var User|UserInterface $user */
         $user = $this->getUser();
 
         if ($this->exam->getQuestion(0, $user) === null) {
@@ -67,8 +66,8 @@ class ExamController extends AbstractController
 //        $this->taskService->compareCheckbox();
 //        $this->taskService->
 
-        return $this->redirectToRoute("exam_index", [
-            'taskPosition' => $taskPosition
+        return $this->redirectToRoute('exam_index', [
+            'taskPosition' => $taskPosition,
         ]);
     }
 

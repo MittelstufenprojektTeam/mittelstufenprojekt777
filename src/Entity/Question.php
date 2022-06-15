@@ -21,14 +21,14 @@ class Question
     private ?string $phrase = null;
 
     #[ORM\ManyToOne(targetEntity: Topic::class)]
-    private ArrayCollection $topics;
+    private Topic $topic;
 
     #[ORM\ManyToOne(targetEntity: DisplayType::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?DisplayType $displayType = null;
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Option::class, orphanRemoval: true)]
-    private $options;
+    private Collection $options;
 
     public function __construct()
     {
@@ -52,26 +52,14 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection<int, Topic>
-     */
-    public function getTopics(): Collection
+    public function getTopic(): Topic
     {
-        return $this->topics;
+        return $this->topic;
     }
 
-    public function addTopic(Topic $topic): self
+    public function setTopic(Topic $topic): self
     {
-        if (!$this->topics->contains($topic)) {
-            $this->topics[] = $topic;
-        }
-
-        return $this;
-    }
-
-    public function removeTopic(Topic $topic): self
-    {
-        $this->topics->removeElement($topic);
+        $this->topic = $topic;
 
         return $this;
     }
@@ -108,11 +96,9 @@ class Question
 
     public function removeOption(Option $option): self
     {
-        if ($this->options->removeElement($option)) {
-            // set the owning side to null (unless already changed)
-            if ($option->getQuestion() === $this) {
-                $option->setQuestion(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->options->removeElement($option) && $option->getQuestion() === $this) {
+            $option->setQuestion(null);
         }
 
         return $this;
