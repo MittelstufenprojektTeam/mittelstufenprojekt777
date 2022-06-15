@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -45,6 +45,14 @@ class OptionRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    public function getCorrectAnswerByQuestionId(int $questionId): array
+    {
+        return $this->findBy([
+            'question' => $questionId,
+            'solution' => true,
+        ]);
     }
 
     // /**
