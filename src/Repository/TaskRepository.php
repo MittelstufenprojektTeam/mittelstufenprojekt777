@@ -56,7 +56,7 @@ class TaskRepository extends ServiceEntityRepository
     {
         $task = $this->findOneBy([
             'position' => $taskPosition,
-            'user' => $user->getId(),
+            'user' => $user,
         ]);
         if ($task !== null) {
             $task->setResult($points);
