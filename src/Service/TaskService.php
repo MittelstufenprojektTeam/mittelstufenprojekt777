@@ -98,9 +98,4 @@ class TaskService
 
         return $userAnswer;
     }
-
-    public function savePoints(int $points, int $taskPosition, User|UserInterface $user): void
-    {
-        $this->taskRepository->savePoints($points, $taskPosition, $user);
-    }
 }

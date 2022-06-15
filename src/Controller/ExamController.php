@@ -80,7 +80,7 @@ class ExamController extends AbstractController
 
         $points = $points ? 1 : 0;
 
-        $this->taskService->savePoints($points, $taskPosition, $user);
+        $this->taskRepository->savePoints($points, $taskPosition, $user);
 
         return $this->redirectToRoute('exam_index', [
             'taskPosition' => $taskPosition + 1,
