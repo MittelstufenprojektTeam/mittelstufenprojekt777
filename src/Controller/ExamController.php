@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Repository\OptionRepository;
 use App\Entity\Task;
 use App\Entity\User;
+use App\Repository\OptionRepository;
 use App\Repository\TaskRepository;
 use App\Service\ExamService;
 use App\Service\TaskService;
@@ -24,13 +24,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ExamController extends AbstractController
 {
     public function __construct(
-        private ExamService         $exam,
+        private ExamService $exam,
         private TranslatorInterface $translator,
-        private TaskRepository      $taskRepository,
-        private OptionRepository    $optionRepository,
-        private TaskService         $taskService,
-    )
-    {
+        private TaskRepository $taskRepository,
+        private OptionRepository $optionRepository,
+        private TaskService $taskService,
+    ) {
     }
 
     /**
@@ -65,12 +64,12 @@ class ExamController extends AbstractController
     public function evaluateTask(int $taskPosition, Request $request): Response
     {
 
-        /** @var \App\Entity\User|UserInterface $user */
+        /** @var User|UserInterface $user */
         $user = $this->getUser();
 
         $question = $this->exam->getQuestion($taskPosition, $user);
         $questionId = $question->getId();
-//AF00::E255:0:1:332D:81FA
+        // AF00::E255:0:1:332D:81FA
         $points = match ($question->getDisplayType()->getId()) {
             1 => $this->taskService->compareCheckbox($this->optionRepository->getCorrectAnswerByQuestionId($questionId), $this->taskService->getAnswers($request)),
             2 => $this->taskService->compareString($this->optionRepository->findOneBy(['question' => $questionId]), $request->request->get('answer', '')),
@@ -79,16 +78,12 @@ class ExamController extends AbstractController
             default => false,
         };
 
-        if ($points) {
-            $points = 1;
-        } else {
-            $points = 0;
-        }
+        $points = $points ? 1 : 0;
 
         $this->taskService->savePoints($points, $taskPosition, $user);
 
         return $this->redirectToRoute('exam_index', [
-            'taskPosition' => $taskPosition + 1
+            'taskPosition' => $taskPosition + 1,
         ]);
     }
 

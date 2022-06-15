@@ -58,7 +58,7 @@ class TaskRepository extends ServiceEntityRepository
             'position' => $taskPosition,
             'user' => $user->getId(),
         ]);
-        if ($task) {
+        if ($task !== null) {
             $task->setResult($points);
             $this->add($task);
         }

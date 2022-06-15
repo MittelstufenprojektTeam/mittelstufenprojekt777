@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -17,8 +17,7 @@ class TaskService
 {
     public function __construct(
         private TaskRepository $taskRepository,
-    )
-    {
+    ) {
     }
 
     public function compareString(Option $option, string $answer): bool
