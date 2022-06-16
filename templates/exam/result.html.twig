@@ -1,7 +1,10 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <h1>{% trans %}exam.result.your{% endtrans %}</h1>
-    <p>{{ "exam.result.points"|trans({'%userPoints%':userPoints, '%possiblePoints%':possiblePoints }) }}</p>
-    <p>{{ "exam.result.percent"|trans({'%percent%':percent}) }}</p>
-    <a class="btn btn-primary" href="{{ path('exam_clear') }}" role="button">{% trans %}button.home{% endtrans %}</a>
+    <div class="d-flex justify-content-center align-items-center flex-column mt-5">
+        <h1>{% trans %}exam.result.your{% endtrans %}</h1>
+        <p style="font-size: 1.2em">{{ "exam.result.points"|trans({'%userPoints%':userPoints, '%possiblePoints%':possiblePoints }) }}</p>
+        <p style="font-size: 1.2em">{{ "exam.result.percent"|trans({'%percent%':percent}) }}</p>
+        <a class="btn-lg btn-primary" href="{{ path('exam_clear') }}"
+           role="button">{% trans %}button.home{% endtrans %}</a>
+    </div>
 {% endblock %}

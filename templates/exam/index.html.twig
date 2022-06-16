@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <h1 class="display-2">{% trans %}nav.exam{% endtrans %}</h1>
+    <div class="w-100 d-flex justify-content-center align-items-center flex-column">
+    <h1 class="display-2 text-center mb-5">{% trans %}nav.exam{% endtrans %}</h1>
     {% include "exam/warning.html.twig" %}
     {% include "_partials/question.html.twig" with {'question': question} %}
+    </div>
 {% endblock %}
