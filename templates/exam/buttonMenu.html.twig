@@ -1,12 +1,23 @@
-<button class="btn btn-primary" type="reset">{% trans %}button.reset{% endtrans %}</button>
+<div class="d-flex align-items-center justify-content-center flex-row mt-5 mb-5">
+    <button class="btn btn-danger me-3" type="reset">{% trans %}button.reset{% endtrans %}</button>
 
-<button class="btn btn-primary" type="submit" formaction="{{ path('exam_index', { taskPosition: position - 1 }) }}"
-   role="button">{% trans %}button.previous{% endtrans %}</button>
+    <button class="btn btn-secondary me-3" type="submit" formaction="{{ path('exam_index', { taskPosition: position - 1 }) }}"
+            role="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+        {% trans %}button.previous{% endtrans %}</button>
 
-<button class="btn btn-primary" formaction="{{ path('home') }}" role="button">{% trans %}button.home{% endtrans %}</button>
+    <button class="btn btn-primary me-3" formaction="{{ path('home') }}"
+            role="button">{% trans %}button.home{% endtrans %}</button>
 
-<button class="btn btn-primary" type="submit" formaction="{{ path('exam_evaluation', { taskPosition: position }) }}"
-   role="button">{% trans %}button.next{% endtrans %}</button>
+    <button class="btn btn-secondary me-3" type="submit" formaction="{{ path('exam_evaluation', { taskPosition: position }) }}"
+            role="button">{% trans %}button.next{% endtrans %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+    </button>
 
-<button class="btn btn-primary" type="submit" formaction="{{ path('exam_result') }}"
-   role="button">{% trans %}button.handIn{% endtrans %}</button>
+    <button class="btn btn-success" type="submit" formaction="{{ path('exam_result') }}"
+            role="button">{% trans %}button.handIn{% endtrans %}</button>
+</div>

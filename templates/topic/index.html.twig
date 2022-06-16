@@ -51,13 +51,17 @@
             <div>
                 <form method="post" action="{{ path('task_' ~ partial ~ '_result', {'questionId': question.id}) }}">
                     {% include '_partials/' ~  partial ~ '.html.twig' %}
-                    <div class="mt-5">
-                        <button type="submit" class="btn btn-success">
-                            Bestätigen
-                        </button>
-                        <button type="button" onclick="window.location.reload();" class="btn btn-secondary">
-                            Eine andere zufällige Aufgabe
-                        </button>
+                    <div class="mt-5 mb-5 d-flex justify-content-center align-items-center">
+                        <div class="m-1">
+                            <button type="submit" class="btn-lg btn-success">
+                                Bestätigen
+                            </button>
+                        </div>
+                        <div class="m-1">
+                            <button type="button" onclick="window.location.reload();" class="btn-lg btn-secondary">
+                                Eine andere zufällige Aufgabe
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,16 @@
-<div>
-    <div>{{ question.phrase }}</div>
-
-    <label>{% trans %}answer.your{% endtrans %}
-        <input name="answer" type="text" placeholder="{% trans %}answer.your{% endtrans %}...">
+<div class="text-center h1 d-flex justify-content-center align-items-center">
+    <div class="w-75">
+        {{ question.phrase }}
+    </div>
+</div>
+<div class="mt-3">
+    <label class="w-100 d-flex justify-content-center align-items-center" style="font-size: 1.2em">
+        <input
+                required
+                class="form-control p-2 mt-2 w-50"
+                name="answer"
+                type="text"
+                placeholder="{% trans %}answer.your{% endtrans %}..."
+        >
     </label>
 </div>
