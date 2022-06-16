@@ -1,8 +1,14 @@
-{% if isCorrect %}
-    <h1>{% trans %}answer.correct{% endtrans %}</h1>
-{% else %}
-    <h1>{% trans %}answer.wrong{% endtrans %}</h1>
-    {% trans %}answer.your{% endtrans %}: {{ userAnswer }}
-    {% trans %}answer.correct{% endtrans %}: {{ answer }}
-{% endif %}
-{% include 'topic/next-random-question.html.twig' %}
+<div class="d-flex align-items-center justify-content-center flex-column mt-5">
+    {% if isCorrect %}
+        <h1 class="text-center">{% trans %}answer.correct{% endtrans %}</h1>
+    {% else %}
+        <h1 class="text-center">{% trans %}answer.wrong{% endtrans %}</h1>
+        <div style="font-size: 1.2em">
+
+            {% trans %}answer.your{% endtrans %}: {{ userAnswer }}
+            <br>
+            {% trans %}answer.correct{% endtrans %}: {{ answer }}
+        </div>
+    {% endif %}
+    {% include 'topic/next-random-question.html.twig' %}
+</div>

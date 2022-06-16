@@ -1,19 +1,34 @@
-{% if isCorrect %}
-    <h1>Deine Antwort war korrekt!</h1>
-{% else %}
-    <h1>Deine Antwort war falsch, dies sind die richtigen Antworten</h1>
-    <div>
-        <p>{% trans %}answer.answered.correct{% endtrans %}</p>
-        {% for answer in correctAnswers %}
-            <ul>{{ answer.text }}</ul>
-        {% endfor %}
-    </div>
-    <div>
-        <p>{% trans %}answer.your{% endtrans %}</p>
-        {#      todo: show user answer  #}
-        {% for selection in userSelectionList %}
-            <ul>{{ selection }}</ul>
-        {% endfor %}
-    </div>
-{% endif %}
-{% include 'topic/next-random-question.html.twig' %}
+<div class="mt-5">
+    {% if isCorrect %}
+        <div class="h1 text-center">
+            Deine Antwort war korrekt!
+        </div>
+    {% else %}
+        <div>
+            <h1 class="text-center">Deine Antwort war falsch, dies sind die richtigen Antworten</h1>
+            <div class="d-flex justify-content-center align-items-start flex-row mt-5">
+                <div class="w-25 m-2 d-flex align-items-center flex-column">
+                    <div class="h3">
+                        {% trans %}answer.your{% endtrans %}
+                    </div>
+                    <ul>
+                        {% for selection in userSelectionList %}
+                            <li style="font-size: 1.2em">{{ selection }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="w-25 h-25 m-2 d-flex align-items-center flex-column">
+                    <div class="h3">
+                        {% trans %}answer.answered.correct{% endtrans %}
+                    </div>
+                    <ul>
+                        {% for answer in correctAnswers %}
+                            <li style="font-size: 1.2em">{{ answer.text }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% include 'topic/next-random-question.html.twig' %}
+</div>
