@@ -1,6 +1,30 @@
-<h1>{{ question.phrase }}</h1>
-{% for option in question.options %}
-    <label>{{ option.text }}
-        <input type="radio" name="answer" value="{{ option.text }}" required>
-    </label>
-{% endfor %}
+<div class="text-center h1 d-flex justify-content-center align-items-center">
+    <div class="w-75">
+        {{ question.phrase }}
+    </div>
+</div>
+
+<div class="d-flex flex-column">
+    {% for option in question.options %}
+        <label
+                style="font-size: 1.2em"
+                class="form-check-label"
+                for="{{ option.text }}"
+        >
+            <div class="w-100 shadow-sm p-2 mb-3 bg-white" style="border-radius: 25px">
+                <div class="form-check form-check-inline">
+                    <input
+                            class="form-check-input"
+                            id="{{ option.text }}"
+                            type="radio"
+                            name="answer"
+                            value="{{ option.text }}"
+                            required
+                    >
+                    {{ option.text }}
+
+                </div>
+            </div>
+        </label>
+    {% endfor %}
+</div>
